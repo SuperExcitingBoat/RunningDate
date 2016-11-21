@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/default_64_text_height">
+
+    <TextView
+        android:id="@+id/rank_rank"
+        android:layout_width="@dimen/default_64_text_height"
+        android:layout_height="@dimen/default_64_text_height"
+        android:gravity="center"
+        android:text="1" />
+
+    <ImageButton
+        android:id="@+id/rank_icon"
+        android:layout_width="@dimen/default_64_text_height"
+        android:layout_height="@dimen/default_64_text_height"
+        android:layout_toEndOf="@id/rank_rank"
+        android:layout_toRightOf="@id/rank_rank"
+        android:background="@color/none"
+        android:src="@color/tianyi_blue" />
+
+    <TextView
+        android:id="@+id/rank_name"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/default_64_text_height"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_toEndOf="@id/rank_icon"
+        android:layout_toRightOf="@id/rank_icon"
+        android:gravity="center"
+        android:text="rank_name" />
+
+    <TextView
+        android:id="@+id/rank_step"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/default_64_text_height"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="@string/step" />
+
+    <TextView
+        android:id="@+id/rank_count"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/default_64_text_height"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_toLeftOf="@id/rank_step"
+        android:layout_toStartOf="@id/rank_step"
+        android:gravity="center"
+        android:text="6666" />
+
+</RelativeLayout>

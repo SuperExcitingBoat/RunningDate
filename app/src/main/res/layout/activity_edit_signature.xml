@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_edit_signature"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.superexcitingboat.runningdate.view.activity.EditSignatureActivity">
+
+    <EditText
+        android:id="@+id/edit_signature_input"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_64_text_height"
+        android:maxLength="20"
+
+        />
+
+    <TextView
+        android:id="@+id/edit_signature_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/edit_signature_input"
+        android:text="@string/word" />
+
+    <TextView
+        android:id="@+id/edit_signature_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_signature_input"
+        android:layout_marginEnd="@dimen/default_8_margin"
+        android:layout_marginStart="@dimen/default_8_margin"
+        android:layout_toLeftOf="@id/edit_signature_word"
+        android:layout_toStartOf="@id/edit_signature_word"
+        android:text="20" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_signature_input"
+        android:layout_toLeftOf="@id/edit_signature_count"
+        android:layout_toStartOf="@id/edit_signature_count"
+        android:text="@string/word_left" />
+
+</RelativeLayout>
