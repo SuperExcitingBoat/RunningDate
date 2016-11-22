@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_bar"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="#ebebeb"
+        />
+    <RadioGroup
+        android:id="@+id/bottom_rg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <RadioButton
+            android:id="@+id/bottom_sports"
+            android:text="运动"
+            style="@style/bottom_tab"
+            android:drawableTop="@drawable/bottom_sports_selector"
+            android:checked="true"
+            />
+        <RadioButton
+            android:id="@+id/bottom_ranking"
+            android:text="排名"
+            style="@style/bottom_tab"
+            android:drawableTop="@drawable/bottom_ranking_selector"
+            />
+        <RadioButton
+            android:id="@+id/bottom_personal"
+            android:text="我的"
+            style="@style/bottom_tab"
+            android:drawableTop="@drawable/bottom_personal_selector"
+            />
+
+    </RadioGroup>
+</LinearLayout>
