@@ -12,11 +12,13 @@
         <!--android:layout_centerHorizontal="true"-->
         <!--android:layout_marginTop="54dp" />-->
 <com.superexcitingboat.runningdate.view.widget.RunningView
-    android:layout_width="280dp"
-    android:layout_height="280dp"
-    android:background="@drawable/running_circle"
+    android:layout_width="250dp"
+    android:layout_height="250dp"
+    android:src="@drawable/running_circle"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="54dp"
+    android:background="?android:attr/actionBarItemBackground"
+    android:clickable="true"
     />
 
     <RelativeLayout
@@ -66,7 +68,7 @@
             android:layout_below="@+id/aa"
             android:layout_alignStart="@+id/aa" />
         <TextView
-            android:id="@+id/tv_walking_ranking"
+            android:id="@+id/tv_running_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12 km"
@@ -86,13 +88,13 @@
             android:layout_alignStart="@+id/bb" />
 
         <TextView
-            android:id="@+id/tv_walking_distance"
+            android:id="@+id/tv_running_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="01:05:23"
             android:textSize="19sp"
-            android:layout_alignBaseline="@+id/tv_walking_ranking"
-            android:layout_alignBottom="@+id/tv_walking_ranking"
+            android:layout_alignBaseline="@+id/tv_running_distance"
+            android:layout_alignBottom="@+id/tv_running_distance"
             android:layout_centerHorizontal="true" />
 
         <TextView
@@ -107,13 +109,13 @@
             android:layout_alignStart="@+id/cc" />
 
         <TextView
-            android:id="@+id/tv_walking_energy"
+            android:id="@+id/tv_running_energy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="426 kcal"
             android:textSize="19sp"
-            android:layout_alignBaseline="@+id/tv_walking_distance"
-            android:layout_alignBottom="@+id/tv_walking_distance"
+            android:layout_alignBaseline="@+id/tv_running_duration"
+            android:layout_alignBottom="@+id/tv_running_duration"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp" />
 

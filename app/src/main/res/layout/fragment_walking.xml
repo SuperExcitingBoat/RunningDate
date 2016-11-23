@@ -8,8 +8,8 @@
 
     <com.superexcitingboat.runningdate.view.widget.WalkingView
         android:id="@+id/walking_count"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
         android:src="@drawable/walking_circle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="54dp"
@@ -30,8 +30,8 @@
 
         <ImageView
             android:id="@+id/a"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:background="@drawable/f"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
@@ -40,16 +40,16 @@
 
         <ImageView
             android:id="@+id/b"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:background="@drawable/d"
             android:layout_alignTop="@+id/a"
             android:layout_centerHorizontal="true" />
 
         <ImageView
             android:id="@+id/g"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:background="@drawable/g"
             android:layout_alignTop="@+id/b"
             android:layout_alignParentEnd="true"
@@ -65,7 +65,7 @@
             android:layout_below="@+id/a"
             android:layout_alignStart="@+id/a" />
         <TextView
-            android:id="@+id/tv_running_ranking"
+            android:id="@+id/tv_walking_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12 km"
@@ -85,24 +85,24 @@
             android:layout_alignStart="@+id/b" />
 
         <TextView
-            android:id="@+id/tv_running_duration"
+            android:id="@+id/tv_walking_ranking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="110"
             android:textSize="19sp"
-            android:layout_alignBaseline="@+id/tv_running_ranking"
-            android:layout_alignBottom="@+id/tv_running_ranking"
+            android:layout_alignBaseline="@+id/tv_walking_distance"
+            android:layout_alignBottom="@+id/tv_walking_distance"
             android:layout_centerHorizontal="true" />
 
 
         <TextView
-            android:id="@+id/tv_running_energy"
+            android:id="@+id/tv_walking_energy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="426 kcal"
             android:textSize="19sp"
-            android:layout_alignBaseline="@+id/tv_running_duration"
-            android:layout_alignBottom="@+id/tv_running_duration"
+            android:layout_alignBaseline="@+id/tv_walking_ranking"
+            android:layout_alignBottom="@+id/tv_walking_ranking"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp" />
 

@@ -8,9 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.superexcitingboat.runningdate.R;
+import com.superexcitingboat.runningdate.view.widget.RunningView;
+import com.superexcitingboat.runningdate.view.widget.WalkingView;
 
 /**
  * Created by xushuzhan on 2016/11/22.
@@ -20,6 +23,10 @@ public class RunningFragment extends Fragment {
     View view;
     private Button mDrawer;
     private RelativeLayout mRlRunningHirstory;
+    private TextView mDistance;//距离
+    private TextView mDuration;//排名
+    private TextView mEnergy;//耗能
+    private RunningView mRunningCount;//显示步数的view
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,5 +52,9 @@ public class RunningFragment extends Fragment {
                 mDrawer.setVisibility(View.VISIBLE);
             }
         });
+
+        mDistance= (TextView) view.findViewById(R.id.tv_running_duration);
+        mDuration = (TextView) view.findViewById(R.id.tv_running_duration);
+        mEnergy = (TextView) view.findViewById(R.id.tv_running_energy);
     }
 }
