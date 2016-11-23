@@ -19,7 +19,7 @@ import static android.graphics.Paint.Cap.ROUND;
 
 public class WalkingView extends ImageView {
     Paint mPaint;
-    String steps = "0";
+    int steps = 0;
     int width;
     int height;
     public WalkingView(Context context) {
@@ -64,9 +64,9 @@ public class WalkingView extends ImageView {
         float textHeight = (-fontMetrics.ascent-fontMetrics.descent)/2;
         mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint. setStrokeCap(ROUND);
-        canvas.drawText(steps, width/2,height/2+textHeight, mPaint);
+        canvas.drawText(String.valueOf(steps), width/2,height/2+textHeight, mPaint);
     }
-    public void setTime(String steps){
+    public void setSteps(int steps){
         this.steps = steps;
         invalidate();
     }

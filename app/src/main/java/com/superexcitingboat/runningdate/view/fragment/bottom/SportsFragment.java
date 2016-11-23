@@ -35,9 +35,10 @@ public class SportsFragment extends Fragment {
     private SportsViewPagerAdapter mSportsViewPagerAdapter;
     private TabLayout mTablayout;
     private ViewPager mViewPager;
-    private Button mDrawer;
     private ImageView mHirstory;
-    private RelativeLayout mRlHirstory;
+    private Button mDrawer;
+    private RelativeLayout mRlRunningHirstory;
+    private RelativeLayout mRlWalkingHirstory;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,17 +64,18 @@ public class SportsFragment extends Fragment {
         mViewPager.setAdapter(mSportsViewPagerAdapter);
         mTablayout.setupWithViewPager(mViewPager);
 
-        mDrawer = (Button) view.findViewById(R.id.bt_sports_drawer);
+//        mDrawer = (Button) view.findViewById(R.id.bt_sports_drawer);
         // mHirstory = (ImageView) view.findViewById(R.id.iv_sports_hestory);
-        mRlHirstory= (RelativeLayout) view.findViewById(R.id.rl);
-        mDrawer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDrawer.setVisibility(View.INVISIBLE);
-                mRlHirstory.setVisibility(View.VISIBLE);
-                Toast.makeText(getContext(), "你一定要自信！", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        mRlRunningHirstory= (RelativeLayout) view.findViewById(R.id.rl_running_history);
+//        mRlWalkingHirstory = (RelativeLayout) view.findViewById(R.id.rl_working_history);
+//        mDrawer.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mDrawer.setVisibility(View.INVISIBLE);
+//                mRlRunningHirstory.setVisibility(View.VISIBLE);
+//                Toast.makeText(getContext(), "你一定要自信！", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 //        mHirstory.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -83,14 +85,19 @@ public class SportsFragment extends Fragment {
 //            }
 //        });
 
-        mRlHirstory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRlHirstory.setVisibility(View.INVISIBLE);
-                mDrawer.setVisibility(View.VISIBLE);
-            }
-        });
+//        mRlRunningHirstory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mRlRunningHirstory.setVisibility(View.INVISIBLE);
+//                mDrawer.setVisibility(View.VISIBLE);
+//            }
+//        });
 
-
+//        mRlWalkingHirstory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
     }
 }

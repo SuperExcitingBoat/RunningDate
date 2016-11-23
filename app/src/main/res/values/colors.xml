@@ -14,4 +14,5 @@
     <color name="in_circle">#d9f4fd</color>
     <color name="shi_jian">#ffffff</color>
     <color name="xiao_yuan_dian">#40fe9c</color>
+    <color name="running_result">#999999</color>
 </resources>
