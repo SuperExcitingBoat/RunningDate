@@ -39,4 +39,25 @@ public class StaticUtils {//一些工具方法可以扔在这儿
         }
     }
 
+    /**
+     * @param second second
+     * @return time like 00:00:00
+     */
+    public static String secondToTime(int second) {
+        int tmp = second / 3600;
+        second = second - tmp * 3600;
+        String h = tmp > 9 ? "" + tmp : "0" + tmp;
+        tmp = second / 60;
+        second = second - tmp * 60;
+        String min = tmp > 9 ? "" + tmp : "0" + tmp;
+        String sec = second > 9 ? "" + second : "0" + second;
+        return h + ":" + min + ":" + sec;
+    }
+
+    public static String cutNumber(double number, int bit) {
+        String tmp = String.valueOf(number);
+        int index = tmp.indexOf(".");
+        return tmp.substring(0, index + bit + 1);
+    }
+
 }

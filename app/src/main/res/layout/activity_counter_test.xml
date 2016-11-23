@@ -21,6 +21,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/step_count" />
 
+    <TextView
+        android:id="@+id/native_step_count_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/step_sum" />
+
+    <TextView
+        android:id="@+id/native_step_count_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/native_step_count_1" />
+
     <Button
         android:id="@+id/reset_step"
         android:layout_width="match_parent"
@@ -52,7 +64,7 @@
         android:id="@+id/accelerator_max"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/step_sum"
+        android:layout_below="@id/native_step_count_2"
         android:scrollbars="vertical" />
 
     <TextView

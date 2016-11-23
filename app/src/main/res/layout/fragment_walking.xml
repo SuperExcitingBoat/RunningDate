@@ -1,121 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pic_sports_backgroud"
-    >
+    android:background="@drawable/pic_sports_background"
+    android:orientation="vertical">
 
     <com.superexcitingboat.runningdate.view.widget.WalkingView
         android:id="@+id/walking_count"
         android:layout_width="240dp"
         android:layout_height="240dp"
-        android:src="@drawable/walking_circle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="54dp"
         android:background="?android:attr/actionBarItemBackground"
         android:clickable="true"
-        />
+        android:src="@drawable/walking_circle" />
 
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_walking_history"
         android:layout_width="match_parent"
         android:layout_height="145dp"
-        android:background="@drawable/rl_running_history"
-        android:id="@+id/rl_walking_history"
-        android:visibility="invisible"
         android:layout_alignParentBottom="true"
-        >
+        android:background="@drawable/rl_running_history"
+        android:visibility="invisible">
 
         <ImageView
             android:id="@+id/a"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@drawable/f"
-            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="43dp"
-            android:layout_marginTop="40dp" />
+            android:layout_marginTop="40dp"
+            android:background="@drawable/f" />
 
         <ImageView
             android:id="@+id/b"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@drawable/d"
             android:layout_alignTop="@+id/a"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/d" />
 
         <ImageView
             android:id="@+id/g"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@drawable/g"
-            android:layout_alignTop="@+id/b"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="43dp" />
+            android:layout_alignTop="@+id/b"
+            android:layout_marginEnd="43dp"
+            android:background="@drawable/g" />
+
         <TextView
             android:id="@+id/_a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/running_result"
-            android:text="距离"
-            android:textSize="11sp"
-            android:layout_marginTop="50dp"
+            android:layout_alignStart="@+id/a"
             android:layout_below="@+id/a"
-            android:layout_alignStart="@+id/a" />
+            android:layout_marginTop="50dp"
+            android:text="距离"
+            android:textColor="@color/running_result"
+            android:textSize="11sp" />
+
         <TextView
             android:id="@+id/tv_walking_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12 km"
-            android:textSize="19sp"
             android:layout_marginStart="27dp"
             android:layout_marginTop="70dp"
-            />
+            android:text="12 km"
+            android:textSize="19sp" />
+
         <TextView
             android:id="@+id/_b"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="排名"
-            android:textSize="11sp"
-            android:textColor="@color/running_result"
             android:layout_alignBaseline="@+id/_a"
             android:layout_alignBottom="@+id/_a"
-            android:layout_alignStart="@+id/b" />
+            android:layout_alignStart="@+id/b"
+            android:text="排名"
+            android:textColor="@color/running_result"
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/tv_walking_ranking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="110"
-            android:textSize="19sp"
             android:layout_alignBaseline="@+id/tv_walking_distance"
             android:layout_alignBottom="@+id/tv_walking_distance"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:text="110"
+            android:textSize="19sp" />
 
 
         <TextView
             android:id="@+id/tv_walking_energy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="426 kcal"
-            android:textSize="19sp"
             android:layout_alignBaseline="@+id/tv_walking_ranking"
             android:layout_alignBottom="@+id/tv_walking_ranking"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp" />
+            android:layout_marginEnd="15dp"
+            android:text="426 kcal"
+            android:textSize="19sp" />
 
         <TextView
             android:id="@+id/_c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="耗能"
-            android:textColor="@color/running_result"
-            android:textSize="11sp"
             android:layout_alignBaseline="@+id/_b"
             android:layout_alignBottom="@+id/_b"
-            android:layout_alignStart="@+id/g" />
+            android:layout_alignStart="@+id/g"
+            android:text="耗能"
+            android:textColor="@color/running_result"
+            android:textSize="11sp" />
 
 
     </RelativeLayout>
@@ -125,10 +123,10 @@
         android:id="@+id/bt_walking_drawer"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@drawable/sports_drawer"
-
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+
+        android:layout_alignParentStart="true"
+        android:background="@drawable/sports_drawer" />
 
 
 </RelativeLayout>

@@ -84,7 +84,7 @@ public class RankAdapter extends RecyclerArrayAdapter<RankedUser> implements Rec
         public void setData(final RankedUser rankedUser) {
             rank.setText(rankedUser.getRank());
             Glide.with(getContext())
-                    .load(rankedUser.getIcon())
+                    .load(rankedUser.getAvatar())
                     .into(icon);
             name.setText(rankedUser.getUsername());
             count.setText(rankedUser.getStepCount());

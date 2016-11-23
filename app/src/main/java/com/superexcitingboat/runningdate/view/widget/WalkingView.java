@@ -22,6 +22,7 @@ public class WalkingView extends ImageView {
     int steps = 0;
     int width;
     int height;
+
     public WalkingView(Context context) {
         super(context);
         mPaint = new Paint();
@@ -58,15 +59,16 @@ public class WalkingView extends ImageView {
         height = getHeight();
         mPaint.setColor(getResources().getColor(R.color.shi_jian));
         mPaint.setAntiAlias(true);
-        mPaint.setTextSize(width/8);
+        mPaint.setTextSize(width / 8);
         mPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        Paint.FontMetrics fontMetrics= mPaint.getFontMetrics();
-        float textHeight = (-fontMetrics.ascent-fontMetrics.descent)/2;
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        float textHeight = (-fontMetrics.ascent - fontMetrics.descent) / 2;
         mPaint.setTextAlign(Paint.Align.CENTER);
-        mPaint. setStrokeCap(ROUND);
-        canvas.drawText(String.valueOf(steps), width/2,height/2+textHeight, mPaint);
+        mPaint.setStrokeCap(ROUND);
+        canvas.drawText(String.valueOf(steps), width / 2, height / 2 + textHeight, mPaint);
     }
-    public void setSteps(int steps){
+
+    public void setSteps(int steps) {
         this.steps = steps;
         invalidate();
     }

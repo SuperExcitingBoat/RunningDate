@@ -1,5 +1,6 @@
 package com.superexcitingboat.runningdate.view.activity;
 
+import android.hardware.Sensor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,7 +10,9 @@ import android.widget.TextView;
 
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.utils.Counter.StepDetector;
+import com.superexcitingboat.runningdate.utils.Counter.StepListener;
 import com.superexcitingboat.runningdate.utils.Counter.StepRecorder;
+import com.superexcitingboat.runningdate.utils.TimeRecorder;
 
 public class CounterTestActivity extends AppCompatActivity implements StepRecorder.OnStepChangeListener, View.OnClickListener {
     private static final String TAG = "CounterTestActivity";
@@ -19,6 +22,8 @@ public class CounterTestActivity extends AppCompatActivity implements StepRecord
     private TextView minAccelerator;
     private Switch aSwitch;
     private int count;
+
+    private int test = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,9 @@ public class CounterTestActivity extends AppCompatActivity implements StepRecord
         resetCount();
         findViewById(R.id.reset_step).setOnClickListener(this);
         StepRecorder.getInstance().addOnStepChangeListener(this);
+
+        new StepListener((TextView) findViewById(R.id.native_step_count_1), Sensor.TYPE_STEP_COUNTER);
+        new StepListener((TextView) findViewById(R.id.native_step_count_2), Sensor.TYPE_STEP_DETECTOR);
     }
 
     @Override
@@ -44,7 +52,7 @@ public class CounterTestActivity extends AppCompatActivity implements StepRecord
         switch (view.getId()) {
             case R.id.reset_step:
                 Log.d(TAG, "onClick: Reset");
-                resetCount();
+                TimeRecorder.getInstance().switchStatus();
                 break;
             case R.id.accelerator_up:
                 plus();

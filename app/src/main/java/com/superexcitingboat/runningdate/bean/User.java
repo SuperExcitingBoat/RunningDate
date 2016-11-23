@@ -3,7 +3,7 @@ package com.superexcitingboat.runningdate.bean;
 public class User {
     private int uid;
     private String username;
-    private String icon;
+    private String avatar;
     private String password;
     private String token;
     private String description;
@@ -25,12 +25,12 @@ public class User {
         this.uid = uid;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getUsername() {
