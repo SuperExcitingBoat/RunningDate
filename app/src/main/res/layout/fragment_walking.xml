@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pic_sports_backgroud"
+    android:background="@drawable/pic_sports_background"
     >
 
     <com.superexcitingboat.runningdate.view.widget.WalkingView
