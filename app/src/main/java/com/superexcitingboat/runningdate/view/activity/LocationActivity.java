@@ -1,11 +1,13 @@
 package com.superexcitingboat.runningdate.view.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
@@ -24,7 +26,10 @@ import com.amap.api.maps2d.model.Polyline;
 import com.amap.api.maps2d.model.PolylineOptions;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.bean.PathRecord;
+import com.superexcitingboat.runningdate.utils.SharedPreferenceUtils;
+import com.superexcitingboat.runningdate.utils.TimeUtil;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -39,9 +44,11 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
     private PathRecord mPathRecord;
     private long mStartTime;
     private long mEndTime;
+    private TextView mRunningDuration;
+    private TextView mRunningDistance;
 
     public static final String TAG = "TAGLocationActivity";
-    Button bt;
+    Button endRunning;
 
     public boolean isFirstRecord = true;
     public LatLng oldLatlng;
@@ -53,16 +60,27 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
         mMapView = (MapView) findViewById(R.id.map_location);
         mMapView.onCreate(savedInstanceState);
         init();//初始化地图对象
+        initView();
 
-        bt = (Button) findViewById(R.id.bt_location_now);
-        bt.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void initView() {
+        mRunningDistance = (TextView) findViewById(R.id.tv_location_distance);
+        mRunningDuration = (TextView) findViewById(R.id.tv_location_duration);
+
+        endRunning= (Button) findViewById(R.id.bt_location_now);
+        endRunning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mLocationClient.stopLocation();//停止定位后，本地定位服务并不会被销毁
                 mEndTime = System.currentTimeMillis();
                 Log.d(TAG, "onClick: 一共跑步的时间：" + getDuration());
                 Log.d(TAG, "onClick: 跑步距离：" + getDistance(mPathRecord.getPathline()));
+
+                finish();
             }
         });
+
     }
 
     private void init() {
@@ -87,10 +105,10 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
         mAMap.setMyLocationStyle(myLocationStyle);
 
         mAMap.setLocationSource(this);
-        mAMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
+        mAMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
         mAMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         mAMap.moveCamera(CameraUpdateFactory.zoomTo(19));  //设置缩放级别
-
+        mAMap.getUiSettings().setZoomControlsEnabled(false);
     }
 
     /**
@@ -127,6 +145,11 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
             Log.d(TAG, "onLocationChanged: 精度" + aMapLocation.getAccuracy());
             Log.d(TAG, "onLocationChanged: " + aMapLocation.getAddress());
             mPathRecord.addpoint(aMapLocation);
+            mEndTime = System.currentTimeMillis();
+            mRunningDuration.setText(TimeUtil.secToTime((int)getDuration()));
+            DecimalFormat df = new DecimalFormat("0.0");
+            mRunningDistance.setText(df.format( getDistance(mPathRecord.getPathline())/1000f )+" km");
+            SharedPreferenceUtils.putString(getApplicationContext(),"duration",TimeUtil.secToTime((int)getDuration()));
         }
 
     }
@@ -134,7 +157,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
 
     @Override
     public void activate(OnLocationChangedListener onLocationChangedListener) {
-        Toast.makeText(this, "给listener赋值", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "给listener赋值", Toast.LENGTH_SHORT).show();
         mListener = onLocationChangedListener;
         startlocation();
 
@@ -170,8 +193,8 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
     }
 
 
-    private String getDuration() {
-        return String.valueOf((mEndTime - mStartTime) / 1000f);
+    private float getDuration() {
+        return (mEndTime - mStartTime) / 1000f;
     }
 
     private String getAverage(float distance) {
@@ -244,6 +267,10 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
         mLocationClient.onDestroy();//销毁定位客户端，同时销毁本地定位服务
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }
 

@@ -1,8 +1,11 @@
 package com.superexcitingboat.runningdate.view.fragment.sports;
 
+import android.content.Intent;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.superexcitingboat.runningdate.R;
+import com.superexcitingboat.runningdate.utils.SharedPreferenceUtils;
+import com.superexcitingboat.runningdate.utils.TimeUtil;
+import com.superexcitingboat.runningdate.view.activity.LocationActivity;
 import com.superexcitingboat.runningdate.view.widget.RunningView;
-import com.superexcitingboat.runningdate.view.widget.WalkingView;
 
 /**
  * Created by xushuzhan on 2016/11/22.
  */
 
 public class RunningFragment extends Fragment {
+    public static final String TAG = "RunningFragmentTAG";
     View view;
     private Button mDrawer;
     private RelativeLayout mRlRunningHirstory;
@@ -56,5 +62,23 @@ public class RunningFragment extends Fragment {
         mDistance= (TextView) view.findViewById(R.id.tv_running_duration);
         mDuration = (TextView) view.findViewById(R.id.tv_running_duration);
         mEnergy = (TextView) view.findViewById(R.id.tv_running_energy);
+
+        mRunningCount = (RunningView) view.findViewById(R.id.running_count);
+        mRunningCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             //   Toast.makeText(getContext(), "该跳转了",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), LocationActivity.class));
+            }
+        });
+     //   mRunningCount.setTime(SharedPreferenceUtils.getString(getContext(),"duration"));
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mRunningCount.setTime(SharedPreferenceUtils.getString(getContext(),"duration"));
     }
 }

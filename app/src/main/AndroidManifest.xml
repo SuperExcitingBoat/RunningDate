@@ -41,6 +41,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="f1ae80c062a3261fd68ae0ab49421449" />
+
         <activity
             android:name=".view.activity.BootActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -64,6 +65,8 @@
         <activity android:name=".view.activity.RecordActivity" />
         <activity android:name=".view.activity.RankActivity" />
         <activity android:name=".view.activity.LocationActivity" />
+
+        <service android:name="com.amap.api.location.APSService" />
     </application>
 
 </manifest>

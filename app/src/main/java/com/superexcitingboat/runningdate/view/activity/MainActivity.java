@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.superexcitingboat.runningdate.R;
+import com.superexcitingboat.runningdate.utils.SharedPreferenceUtils;
 import com.superexcitingboat.runningdate.view.fragment.bottom.PersonalFragment;
 import com.superexcitingboat.runningdate.view.fragment.bottom.RankingFragment;
 import com.superexcitingboat.runningdate.view.fragment.bottom.SportsFragment;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(new Intent(MainActivity.this, LocationActivity.class));
 //            }
 //        });
-
+        SharedPreferenceUtils.putString(getApplicationContext(),"duration","00:00:00");
         initView();
     }
 

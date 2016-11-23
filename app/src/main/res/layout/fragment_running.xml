@@ -12,6 +12,7 @@
         <!--android:layout_centerHorizontal="true"-->
         <!--android:layout_marginTop="54dp" />-->
 <com.superexcitingboat.runningdate.view.widget.RunningView
+    android:id="@+id/running_count"
     android:layout_width="250dp"
     android:layout_height="250dp"
     android:src="@drawable/running_circle"

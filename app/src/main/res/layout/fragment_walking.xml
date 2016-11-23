@@ -48,8 +48,8 @@
 
         <ImageView
             android:id="@+id/g"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="24.5dp"
+            android:layout_height="24.5dp"
             android:background="@drawable/g"
             android:layout_alignTop="@+id/b"
             android:layout_alignParentEnd="true"
@@ -113,8 +113,8 @@
             android:text="耗能"
             android:textColor="@color/running_result"
             android:textSize="11sp"
-            android:layout_alignBaseline="@+id/_b"
             android:layout_alignBottom="@+id/_b"
+            android:layout_alignTop="@+id/_b"
             android:layout_alignStart="@+id/g" />
 
 
