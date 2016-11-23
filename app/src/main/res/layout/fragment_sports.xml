@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pic_sports_backgroud"
+    android:background="@drawable/pic_sports_background"
     >
     <TextView
         android:id="@+id/tv_sports_title"
@@ -29,12 +29,12 @@
         app:tabGravity="center"
 
         />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/sports_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/sports_tab"
-        ></android.support.v4.view.ViewPager>
+        android:layout_below="@+id/sports_tab" />
 
     <!--<ImageView-->
     <!--android:id="@+id/iv_sports_hestory"-->

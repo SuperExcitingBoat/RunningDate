@@ -18,10 +18,11 @@ import static android.graphics.Paint.Cap.ROUND;
  */
 
 public class RunningView extends ImageView {
-    Paint mPaint;
-    String time = "00:00:00";
-    int width;
-    int height;
+    private Paint mPaint;
+    private String time = "00:00:00";
+    private int width;
+    private int height;
+
     public RunningView(Context context) {
         super(context);
         mPaint = new Paint();
@@ -58,15 +59,16 @@ public class RunningView extends ImageView {
         height = getHeight();
         mPaint.setColor(getResources().getColor(R.color.shi_jian));
         mPaint.setAntiAlias(true);
-        mPaint.setTextSize(width/8);
+        mPaint.setTextSize(width / 8);
         mPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        Paint.FontMetrics fontMetrics= mPaint.getFontMetrics();
-        float textHeight = (-fontMetrics.ascent-fontMetrics.descent)/2;
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        float textHeight = (-fontMetrics.ascent - fontMetrics.descent) / 2;
         mPaint.setTextAlign(Paint.Align.CENTER);
-        mPaint. setStrokeCap(ROUND);
-        canvas.drawText(time, width/2,height/2+textHeight, mPaint);
+        mPaint.setStrokeCap(ROUND);
+        canvas.drawText(time, width / 2, height / 2 + textHeight, mPaint);
     }
-    public void setTime(String time){
+
+    public void setTime(String time) {
         this.time = time;
         invalidate();
     }
