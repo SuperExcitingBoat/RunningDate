@@ -5,7 +5,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-
+    android:background="#fff"
     >
     <ImageView
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:id="@+id/bottom_rg"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="50dp">
         <RadioButton
             android:id="@+id/bottom_sports"
             android:text="运动"

@@ -28,41 +28,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.test_button1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            }
-        });
-        findViewById(R.id.test_button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, CounterTestActivity.class));
-            }
-        });
-        findViewById(R.id.bt_location).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, LocationActivity.class));
-            }
-        });
+//        findViewById(R.id.test_button1).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+//            }
+//        });
+//        findViewById(R.id.test_button2).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, CounterTestActivity.class));
+//            }
+//        });
+//        findViewById(R.id.bt_location).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, LocationActivity.class));
+//            }
+//        });
 
-        initFragments();
         initView();
     }
 
-    private void initFragments() {
-        mFragments.add(new SportsFragment());
-        mFragments.add(new RankingFragment());
-        mFragments.add(new PersonalFragment());
-    }
+
 
     private void initView() {
         mFragmentManager = getSupportFragmentManager();
 
         //设置默认显示主页这个fragment
         FragmentTransaction transaction1 = mFragmentManager.beginTransaction();
-        transaction1.replace(R.id.content, mFragments.get(0));
+        transaction1.replace(R.id.content,new SportsFragment());
         transaction1.commit();
 
         mRadioGroup = (RadioGroup) findViewById(R.id.bottom_rg);
@@ -72,17 +67,17 @@ public class MainActivity extends AppCompatActivity {
                 switch (i){
                     case R.id.bottom_sports:
                         FragmentTransaction transaction1 = mFragmentManager.beginTransaction();
-                        transaction1.replace(R.id.content, mFragments.get(0));
+                        transaction1.replace(R.id.content, new SportsFragment());
                         transaction1.commit();
                         break;
                     case R.id.bottom_ranking:
                         FragmentTransaction transaction2 = mFragmentManager.beginTransaction();
-                        transaction2.replace(R.id.content, mFragments.get(1));
+                        transaction2.replace(R.id.content, new RankingFragment());
                         transaction2.commit();
                         break;
                     case R.id.bottom_personal:
                         FragmentTransaction transaction3 = mFragmentManager.beginTransaction();
-                        transaction3.replace(R.id.content, mFragments.get(2));
+                        transaction3.replace(R.id.content, new PersonalFragment());
                         transaction3.commit();
                         break;
                     default:

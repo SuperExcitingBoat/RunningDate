@@ -1,12 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pic_sports_backgroud"
+    >
     <TextView
-        android:text="运动"
-        android:textSize="60sp"
+        android:id="@+id/tv_sports_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:textSize="18sp"
+        android:layout_marginTop="3dp"
+        android:text="运动"
+        android:textColor="#fff"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/sports_tab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/tv_sports_title"
+        app:tabIndicatorColor="#fff"
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="#fff"
+        app:tabTextAppearance="@style/sports_tab"
+        app:tabGravity="center"
+
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/sports_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sports_tab"
+        ></android.support.v4.view.ViewPager>
+
+    <!--<ImageView-->
+    <!--android:id="@+id/iv_sports_hestory"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="140dp"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/pic_running_history"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:visibility="invisible"-->
+    <!--/>-->
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/rl_running_history"
+        android:id="@+id/rl"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        >
+
+        <ImageView
+            android:id="@+id/a"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/test"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="40dp" />
+
+        <ImageView
+            android:id="@+id/b"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/test"
+            android:layout_alignTop="@+id/a"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/c"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/test"
+            android:layout_alignTop="@+id/b"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="43dp" />
+
+        <TextView
+            android:id="@+id/_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="排名"
+            android:textSize="15sp"
+            android:layout_alignBaseline="@+id/_a"
+            android:layout_alignBottom="@+id/_a"
+            android:layout_alignStart="@+id/b" />
+
+        <TextView
+            android:id="@+id/_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="耗能"
+            android:textSize="15sp"
+            android:layout_alignBaseline="@+id/_b"
+            android:layout_alignBottom="@+id/_b"
+            android:layout_alignStart="@+id/c" />
+
+        <TextView
+            android:id="@+id/_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="距离"
+            android:textSize="15sp"
+            android:layout_marginTop="29dp"
+            android:layout_below="@+id/a"
+            android:layout_alignStart="@+id/a" />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/bt_sports_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/sports_drawer"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

@@ -3,35 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#3fb4f7"
     tools:context="com.superexcitingboat.runningdate.view.activity.MainActivity">
 
-    <ProgressBar
-        android:id="@+id/test_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+    <!--<ProgressBar-->
+    <!--android:id="@+id/test_progress"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true" />-->
 
-    <Button
-        android:id="@+id/test_button1"
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/test_progress" />
+    <!--<Button-->
+    <!--android:id="@+id/test_button1"-->
+    <!--android:layout_width="128dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/test_progress" />-->
 
-    <Button
-        android:id="@+id/test_button2"
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/test_progress"
-        android:layout_toEndOf="@id/test_button1"
-        android:layout_toRightOf="@id/test_button1" />
+    <!--<Button-->
+    <!--android:id="@+id/test_button2"-->
+    <!--android:layout_width="128dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/test_progress"-->
+    <!--android:layout_toEndOf="@id/test_button1"-->
+    <!--android:layout_toRightOf="@id/test_button1" />-->
 
-    <Button
-        android:id="@+id/bt_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/test_button2"
-        android:text="跳转到地图" />
+    <!--<Button-->
+    <!--android:id="@+id/bt_location"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/test_button2"-->
+    <!--android:text="跳转到地图" />-->
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -43,8 +44,10 @@
 
     <include
         layout="@layout/bottom_bar"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>
