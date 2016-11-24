@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">RunTogether</string>
-    <string name="login">Login</string>
+    <string name="login">登录</string>
     <string name="login_success">Login success</string>
-    <string name="student_number">student number</string>
-    <string name="password">password</string>
+    <string name="student_number">请输入学号</string>
+    <string name="password">请输入身份证后6位</string>
     <string name="click_to_login">click to login</string>
     <string name="not_login">please login first</string>
     <string name="word">word</string>

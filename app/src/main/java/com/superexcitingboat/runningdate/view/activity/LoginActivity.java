@@ -33,6 +33,10 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //测试时使用
+                setResult(2);
+                finish();
+
                 String username = usernameEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
                 if (isUsernameAvailable(username)) {

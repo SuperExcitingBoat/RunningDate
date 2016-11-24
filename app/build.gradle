@@ -33,6 +33,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.jude:easyrecyclerview:4.2.6'
     testCompile 'junit:junit:4.12'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile files('libs/AMap_Location_V2.4.1_20160414.jar')
     compile files('libs/AMap2DMap_2.9.2_AMapLocation_3.1.0_20161027.jar')

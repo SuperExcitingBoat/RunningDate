@@ -4,36 +4,75 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/default_64_margin"
-    android:paddingLeft="@dimen/default_64_margin"
-    android:paddingRight="@dimen/default_64_margin"
-    android:paddingTop="@dimen/default_64_margin"
+    android:background="@drawable/pic_login_bg"
     tools:context="com.superexcitingboat.runningdate.view.activity.LoginActivity">
 
     <EditText
         android:id="@+id/login_username"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_64_margin"
+        android:layout_alignParentRight="true"
         android:inputType="number"
         android:maxLength="10"
+        android:layout_marginTop="50dp"
         android:hint="@string/student_number"
+        android:layout_below="@+id/iv_logo"
+        android:layout_marginRight="50dp"
         />
-
-    <EditText
-        android:id="@+id/login_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login_username"
-        android:inputType="numberPassword"
-        android:hint="@string/password" />
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:layout_below="@+id/login_password"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/running_button_bg"
         android:text="@string/login"
+        android:layout_marginTop="50dp"
+        android:textColor="#fff"
+        android:textSize="15dp"
         />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/pic_logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="117dp"
+        android:id="@+id/iv_logo" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:inputType="numberPassword"
+        android:hint="@string/password"
+        android:layout_below="@+id/login_username"
+        android:layout_marginTop="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        />
+
+    <!--<ImageView-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:src="@drawable/pic_password"-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:layout_alignTop="@+id/login_password"-->
+        <!--android:layout_toStartOf="@+id/login_password" />-->
+
+    <!--<ImageView-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:src="@drawable/pic_account"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:id="@+id/imageView2"-->
+        <!--android:layout_alignTop="@+id/login_username"-->
+        <!--android:layout_toStartOf="@+id/login_username" />-->
 </RelativeLayout>
