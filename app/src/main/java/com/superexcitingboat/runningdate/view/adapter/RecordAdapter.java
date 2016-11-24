@@ -12,17 +12,17 @@ import com.superexcitingboat.runningdate.IView.IRecordView;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.bean.Record;
 import com.superexcitingboat.runningdate.bean.SingleRecord;
-import com.superexcitingboat.runningdate.presenter.RecordPresenter;
+import com.superexcitingboat.runningdate.presenter.WalkingRecordPresenter;
 
 public class RecordAdapter extends RecyclerArrayAdapter<SingleRecord> implements RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, IRecordView {
 
-    private RecordPresenter recordPresenter;
+    private WalkingRecordPresenter walkingRecordPresenter;
     private OnItemClickListener onItemClickListener;
 
     public RecordAdapter(Context context) {
         super(context);
-        recordPresenter = new RecordPresenter();
-        recordPresenter.addiRecordView(this);
+        walkingRecordPresenter = new WalkingRecordPresenter();
+        walkingRecordPresenter.addiRecordView(this);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class RecordAdapter extends RecyclerArrayAdapter<SingleRecord> implements
 
     @Override
     public void onLoadMore() {
-        recordPresenter.getRecord();
+        walkingRecordPresenter.getRecord();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class RecordAdapter extends RecyclerArrayAdapter<SingleRecord> implements
     }
 
     public void unBind() {
-        recordPresenter.removeRecordView();
+        walkingRecordPresenter.removeRecordView();
     }
 
     @Override

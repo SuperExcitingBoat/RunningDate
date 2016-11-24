@@ -3,19 +3,18 @@ package com.superexcitingboat.runningdate.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.superexcitingboat.runningdate.IView.IRecordView;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.bean.Record;
-import com.superexcitingboat.runningdate.presenter.RecordPresenter;
+import com.superexcitingboat.runningdate.presenter.WalkingRecordPresenter;
 import com.superexcitingboat.runningdate.view.adapter.RecordAdapter;
 
 public class RecordActivity extends AppCompatActivity implements IRecordView, RecyclerArrayAdapter.OnItemClickListener {
 
-    private RecordPresenter recordPresenter;
+    private WalkingRecordPresenter walkingRecordPresenter;
     private EasyRecyclerView easyRecyclerView;
     private RecordAdapter recordAdapter;
 
@@ -29,8 +28,8 @@ public class RecordActivity extends AppCompatActivity implements IRecordView, Re
         easyRecyclerView.setAdapter(recordAdapter);
 //TODO    easyRecyclerView.setEmptyView();
 //        easyRecyclerView.setErrorView();
-        recordPresenter = new RecordPresenter();
-        recordPresenter.addiRecordView(this);
+        walkingRecordPresenter = new WalkingRecordPresenter();
+        walkingRecordPresenter.addiRecordView(this);
         recordAdapter.setOnItemClickListener(this);
         recordAdapter.onLoadMore();
     }
@@ -43,7 +42,7 @@ public class RecordActivity extends AppCompatActivity implements IRecordView, Re
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        recordPresenter.removeRecordView();
+        walkingRecordPresenter.removeRecordView();
     }
 
     @Override

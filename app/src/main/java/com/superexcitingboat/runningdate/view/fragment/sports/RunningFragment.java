@@ -1,7 +1,6 @@
 package com.superexcitingboat.runningdate.view.fragment.sports;
 
 import android.content.Intent;
-import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,11 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.superexcitingboat.runningdate.R;
-import com.superexcitingboat.runningdate.utils.SharedPreferenceUtils;
-import com.superexcitingboat.runningdate.utils.TimeUtil;
+import com.superexcitingboat.runningdate.utils.StaticUtils;
+import com.superexcitingboat.runningdate.utils.TimeRecorder;
 import com.superexcitingboat.runningdate.view.activity.LocationActivity;
 import com.superexcitingboat.runningdate.view.widget.RunningView;
 
@@ -25,30 +23,33 @@ import com.superexcitingboat.runningdate.view.widget.RunningView;
  */
 
 public class RunningFragment extends Fragment {
+    public static final int REQUEST_MAP_ACTIVITY = 1;
     public static final String TAG = "RunningFragmentTAG";
     View view;
     private Button mDrawer;
     private RelativeLayout mRlRunningHirstory;
     private TextView mDistance;//距离
-    private TextView mDuration;//排名
+    private TextView mDuration;//时间
     private TextView mEnergy;//耗能
     private RunningView mRunningCount;//显示步数的view
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_running,container,false);
+        view = inflater.inflate(R.layout.fragment_running, container, false);
         initView();
         return view;
     }
 
     private void initView() {
         mDrawer = (Button) view.findViewById(R.id.bt_running_drawer);
-        mRlRunningHirstory= (RelativeLayout) view.findViewById(R.id.rl_running_history);
+        mRlRunningHirstory = (RelativeLayout) view.findViewById(R.id.rl_running_history);
         mDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mDrawer.setVisibility(View.INVISIBLE);
-                mRlRunningHirstory.setVisibility(View.VISIBLE);;
+                mRlRunningHirstory.setVisibility(View.VISIBLE);
+                ;
             }
         });
         mRlRunningHirstory.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +60,7 @@ public class RunningFragment extends Fragment {
             }
         });
 
-        mDistance= (TextView) view.findViewById(R.id.tv_running_duration);
+        mDistance = (TextView) view.findViewById(R.id.tv_running_distance);
         mDuration = (TextView) view.findViewById(R.id.tv_running_duration);
         mEnergy = (TextView) view.findViewById(R.id.tv_running_energy);
 
@@ -67,11 +68,11 @@ public class RunningFragment extends Fragment {
         mRunningCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             //   Toast.makeText(getContext(), "该跳转了",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getContext(), LocationActivity.class));
+                //   Toast.makeText(getContext(), "该跳转了",Toast.LENGTH_SHORT).show();
+                startActivityForResult(new Intent(getContext(), LocationActivity.class), REQUEST_MAP_ACTIVITY);
             }
         });
-     //   mRunningCount.setTime(SharedPreferenceUtils.getString(getContext(),"duration"));
+        //   mRunningCount.setTime(SharedPreferenceUtils.getString(getContext(),"duration"));
 
     }
 
@@ -79,6 +80,15 @@ public class RunningFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mRunningCount.setTime(SharedPreferenceUtils.getString(getContext(),"duration"));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_MAP_ACTIVITY && resultCode == LocationActivity.RESULT_MAP_ACTIVITY) {
+            mDistance.setText(StaticUtils.cutNumber(data.getFloatExtra("distance", 0), 2));
+            Log.d(TAG, "onActivityResult: distance: " + mDistance.getText().toString());
+            mRunningCount.setTime(StaticUtils.secondToTime(TimeRecorder.getInstance().getCount()));
+            mDuration.setText(mRunningCount.getTime());
+        }
     }
 }

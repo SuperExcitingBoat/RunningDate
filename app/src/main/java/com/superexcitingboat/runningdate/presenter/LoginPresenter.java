@@ -1,7 +1,7 @@
 package com.superexcitingboat.runningdate.presenter;
 
 import com.superexcitingboat.runningdate.IView.ILoginView;
-import com.superexcitingboat.runningdate.bean.RankedUser;
+import com.superexcitingboat.runningdate.bean.WalkingRankUser;
 import com.superexcitingboat.runningdate.bean.User;
 import com.superexcitingboat.runningdate.model.LoginModel;
 import com.superexcitingboat.runningdate.utils.CurrentUser;
@@ -9,7 +9,7 @@ import com.superexcitingboat.runningdate.utils.CurrentUser;
 import rx.Observer;
 
 
-public class LoginPresenter implements Observer<RankedUser> {
+public class LoginPresenter implements Observer<WalkingRankUser> {
     private ILoginView loginView;
     private LoginModel loginModel;
 
@@ -30,8 +30,8 @@ public class LoginPresenter implements Observer<RankedUser> {
     }
 
     @Override
-    public void onNext(RankedUser rankedUser) {
-        CurrentUser.replaceRankedUser(rankedUser);
+    public void onNext(WalkingRankUser walkingRankUser) {
+        CurrentUser.replaceRankedUser(walkingRankUser);
         loginView.success();
     }
 

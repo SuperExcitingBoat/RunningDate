@@ -68,7 +68,7 @@
             android:id="@+id/tv_walking_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12 km"
+            android:text="0 km"
             android:textSize="19sp"
             android:layout_marginStart="27dp"
             android:layout_marginTop="70dp"

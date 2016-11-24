@@ -7,9 +7,10 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
 
+import com.superexcitingboat.runningdate.utils.Counter.OnStepChangeListener;
 import com.superexcitingboat.runningdate.utils.Counter.StepRecorder;
 
-public class StepCountService extends Service implements StepRecorder.OnStepChangeListener {
+public class StepCountService extends Service implements OnStepChangeListener {
 
     private NotificationManager notificationManager;
     private Notification notification;

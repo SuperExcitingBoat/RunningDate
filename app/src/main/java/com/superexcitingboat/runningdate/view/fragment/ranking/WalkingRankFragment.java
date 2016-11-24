@@ -1,4 +1,4 @@
-package com.superexcitingboat.runningdate.view.fragment;
+package com.superexcitingboat.runningdate.view.fragment.ranking;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,19 +11,15 @@ import android.view.ViewGroup;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.superexcitingboat.runningdate.R;
-import com.superexcitingboat.runningdate.bean.RankedUser;
+import com.superexcitingboat.runningdate.bean.WalkingRankUser;
 import com.superexcitingboat.runningdate.view.activity.RecordActivity;
-import com.superexcitingboat.runningdate.view.adapter.MyRankItemView;
 import com.superexcitingboat.runningdate.view.adapter.OnItemClickListener;
-import com.superexcitingboat.runningdate.view.adapter.RankAdapter;
+import com.superexcitingboat.runningdate.view.adapter.WalkingRankAdapter;
 
-import java.util.List;
+public class WalkingRankFragment extends Fragment implements OnItemClickListener<WalkingRankUser> {
 
-public class RankFragment extends Fragment implements OnItemClickListener<RankedUser> {
-
-    private List<RankedUser> users;
     private EasyRecyclerView easyRecyclerView;
-    private RankAdapter rankAdapter;
+    private WalkingRankAdapter walkingRankAdapter;
 
 
     @Override
@@ -35,29 +31,20 @@ public class RankFragment extends Fragment implements OnItemClickListener<Ranked
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         easyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        rankAdapter = new RankAdapter(getContext(), users);
-        easyRecyclerView.setAdapter(rankAdapter);
-        easyRecyclerView.setRefreshListener(rankAdapter);
-        rankAdapter.addHeader(new MyRankItemView());
-        rankAdapter.onLoadMore();
+        walkingRankAdapter = new WalkingRankAdapter(getContext());
+        easyRecyclerView.setAdapter(walkingRankAdapter);
+        easyRecyclerView.setRefreshListener(walkingRankAdapter);
+        walkingRankAdapter.onLoadMore();
     }
 
     @Override
-    public void onItemClick(RankedUser item) {
+    public void onItemClick(WalkingRankUser item) {
         startActivity(new Intent(getContext(), RecordActivity.class));
-    }
-
-    public List<RankedUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<RankedUser> users) {
-        this.users = users;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        rankAdapter.unBind();
+        walkingRankAdapter.unBind();
     }
 }

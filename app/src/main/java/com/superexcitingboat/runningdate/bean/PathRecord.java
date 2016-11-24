@@ -13,10 +13,10 @@ import java.util.List;
 public class PathRecord {
         private AMapLocation mStartPoint;//起点
         private AMapLocation mEndPoint; //终点
-        private List<AMapLocation> mPathLinePoints = new ArrayList<AMapLocation>();//路径集合
+        private List<AMapLocation> mPathLinePoints = new ArrayList<>();//路径集合
         private String mDistance;//距离
         private String mDuration;//持续时间
-        private String mAveragespeed;//平均速度
+        private String mAverageSpeed;//平均速度
         private String mDate;//时间
         private int mId = 0;
 
@@ -32,11 +32,11 @@ public class PathRecord {
             this.mId = id;
         }
 
-        public AMapLocation getStartpoint() {
+        public AMapLocation getStartPoint() {
             return mStartPoint;
         }
 
-        public void setStartpoint(AMapLocation startpoint) {
+        public void setStartPoint(AMapLocation startpoint) {
             this.mStartPoint = startpoint;
         }
 
@@ -52,7 +52,7 @@ public class PathRecord {
             return mPathLinePoints;
         }
 
-        public void setPathline(List<AMapLocation> pathline) {
+        public void setPathLine(List<AMapLocation> pathline) {
             this.mPathLinePoints = pathline;
         }
 
@@ -72,12 +72,12 @@ public class PathRecord {
             this.mDuration = duration;
         }
 
-        public String getAveragespeed() {
-            return mAveragespeed;
+        public String getAverageSpeed() {
+            return mAverageSpeed;
         }
 
-        public void setAveragespeed(String averagespeed) {
-            this.mAveragespeed = averagespeed;
+        public void setAverageSpeed(String averagespeed) {
+            this.mAverageSpeed = averagespeed;
         }
 
         public String getDate() {

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.superexcitingboat.runningdate.R;
+import com.superexcitingboat.runningdate.utils.Counter.OnStepChangeListener;
 import com.superexcitingboat.runningdate.utils.Counter.StepRecorder;
 import com.superexcitingboat.runningdate.utils.StaticUtils;
 import com.superexcitingboat.runningdate.utils.TimeRecorder;
@@ -21,7 +22,7 @@ import com.superexcitingboat.runningdate.view.widget.WalkingView;
  * Created by xushuzhan on 2016/11/22.
  */
 
-public class WalkingFragment extends Fragment implements StepRecorder.OnStepChangeListener {
+public class WalkingFragment extends Fragment implements OnStepChangeListener {
     View view;
     private Button mDrawer;
     private RelativeLayout mRlWalkingHirstory;
@@ -80,7 +81,6 @@ public class WalkingFragment extends Fragment implements StepRecorder.OnStepChan
                     isClicked = true;
                     StepRecorder.getInstance().addOnStepChangeListener(WalkingFragment.this);
                 }
-                TimeRecorder.getInstance().switchStatus();
             }
         });
         //这个方法可以显示已经走的步数，不断传入已经走的步数，实现动态增长

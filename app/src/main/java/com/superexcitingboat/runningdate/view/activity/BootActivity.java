@@ -20,7 +20,7 @@ public class BootActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                if (CurrentUser.getRankedUser() == null) {
+//                if (CurrentUser.getWalkingRankUser() == null) {
 //                    Toast.makeText(BootActivity.this, R.string.not_login, Toast.LENGTH_SHORT).show();
 //                    startActivity(new Intent(BootActivity.this, LoginActivity.class));
 //                } else {

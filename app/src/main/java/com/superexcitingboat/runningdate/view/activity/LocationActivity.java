@@ -1,14 +1,15 @@
 package com.superexcitingboat.runningdate.view.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -27,14 +28,16 @@ import com.amap.api.maps2d.model.PolylineOptions;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.bean.PathRecord;
 import com.superexcitingboat.runningdate.utils.SharedPreferenceUtils;
-import com.superexcitingboat.runningdate.utils.TimeUtil;
+import com.superexcitingboat.runningdate.utils.StaticUtils;
+import com.superexcitingboat.runningdate.utils.TimeRecorder;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-public class LocationActivity extends AppCompatActivity implements LocationSource, AMapLocationListener {
+public class LocationActivity extends AppCompatActivity implements LocationSource, AMapLocationListener, TimeRecorder.OnTimePlusOneSecondListener {
+
+    public static final String TAG = "TAGLocationActivity";
+    public static final int RESULT_MAP_ACTIVITY = 1;
     private AMap mAMap;
     private MapView mMapView;
     private LocationSource.OnLocationChangedListener mListener;
@@ -42,16 +45,15 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
     private AMapLocationClientOption mLocationOption;
     public Polyline polyline;
     private PathRecord mPathRecord;
-    private long mStartTime;
-    private long mEndTime;
     private TextView mRunningDuration;
     private TextView mRunningDistance;
-
-    public static final String TAG = "TAGLocationActivity";
-    Button endRunning;
+    private Button endRunning;
+    private AlertDialog exitDialog;
+    public LatLng oldLatlng;
+    private int mDuration;
+    private float mDistance;
 
     public boolean isFirstRecord = true;
-    public LatLng oldLatlng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,27 +70,28 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
         mRunningDistance = (TextView) findViewById(R.id.tv_location_distance);
         mRunningDuration = (TextView) findViewById(R.id.tv_location_duration);
 
-        endRunning= (Button) findViewById(R.id.bt_location_now);
+        endRunning = (Button) findViewById(R.id.bt_location_now);
         endRunning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLocationClient.stopLocation();//停止定位后，本地定位服务并不会被销毁
-                mEndTime = System.currentTimeMillis();
-                Log.d(TAG, "onClick: 一共跑步的时间：" + getDuration());
-                Log.d(TAG, "onClick: 跑步距离：" + getDistance(mPathRecord.getPathline()));
-
-                finish();
+                Log.d(TAG, "onClick: 一共跑步的时间：" + mDuration);
+                Log.d(TAG, "onClick: 跑步距离：" + mDistance);
+                confirmExit();
             }
         });
 
     }
+
 
     private void init() {
         if (mAMap == null) {
             mAMap = mMapView.getMap();
             setUpMap();
         }
-
+        mDuration = 0;
+        TimeRecorder.getInstance().addOnTimePlusOneSecondListener(this);//添加时间通知回调
+        TimeRecorder.getInstance().switchStatus();
     }
 
     /**
@@ -121,8 +124,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
             mListener.onLocationChanged(aMapLocation);// 显示系统小蓝点
 
             //当前的经纬度
-            LatLng newLatlng = new LatLng(aMapLocation.getLatitude(),
-                    aMapLocation.getLongitude());
+            LatLng newLatlng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());
             mAMap.moveCamera(CameraUpdateFactory.changeLatLng(newLatlng));
 
             //判断是否为第一次定位经纬度
@@ -131,10 +133,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
                 isFirstRecord = false;
 
                 //开始定位的时间，之后会放在开始跑步的方法里
-                mStartTime = System.currentTimeMillis();
                 mPathRecord = new PathRecord();
-                mPathRecord.setDate(getcueDate(mStartTime));
-                Log.d(TAG, "onLocationChanged: " + mStartTime + ">>>>>" + getcueDate(mStartTime));
             }
             if (oldLatlng != newLatlng && aMapLocation.getAccuracy() <= 5) {
                 PolylineOptions polylineOptions = new PolylineOptions().add(oldLatlng, newLatlng).width(10).color(Color.argb(255, 1, 1, 1));
@@ -145,11 +144,11 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
             Log.d(TAG, "onLocationChanged: 精度" + aMapLocation.getAccuracy());
             Log.d(TAG, "onLocationChanged: " + aMapLocation.getAddress());
             mPathRecord.addpoint(aMapLocation);
-            mEndTime = System.currentTimeMillis();
-            mRunningDuration.setText(TimeUtil.secToTime((int)getDuration()));
+            mRunningDuration.setText(StaticUtils.secondToTime(mDuration));
             DecimalFormat df = new DecimalFormat("0.0");
-            mRunningDistance.setText(df.format( getDistance(mPathRecord.getPathline()))+" km");
-            SharedPreferenceUtils.putString(getApplicationContext(),"duration",TimeUtil.secToTime((int)getDuration()));
+            mDistance = getDistance(mPathRecord.getPathline());
+            mRunningDistance.setText(df.format(mDistance) + " km");
+            SharedPreferenceUtils.putString(getApplicationContext(), "duration", StaticUtils.secondToTime(mDuration));
         }
 
     }
@@ -157,9 +156,9 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
 
     @Override
     public void activate(OnLocationChangedListener onLocationChangedListener) {
-       // Toast.makeText(this, "给listener赋值", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "给listener赋值", Toast.LENGTH_SHORT).show();
         mListener = onLocationChangedListener;
-        startlocation();
+        startLocation();
 
 
     }
@@ -170,7 +169,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
     }
 
 
-    private void startlocation() {
+    private void startLocation() {
         if (mLocationClient == null) {
             mLocationClient = new AMapLocationClient(this);
             mLocationOption = new AMapLocationClientOption();
@@ -193,26 +192,18 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
     }
 
 
-    private float getDuration() {
-        return (mEndTime - mStartTime) / 1000f;
-    }
-
-    private String getAverage(float distance) {
-        return String.valueOf(distance / (float) (mEndTime - mStartTime));
-    }
-
     private float getDistance(List<AMapLocation> list) {
         float distance = 0;
         if (list == null || list.size() == 0) {
             return distance;
         }
         for (int i = 0; i < list.size() - 1; i++) {
-            AMapLocation firstpoint = list.get(i);
-            AMapLocation secondpoint = list.get(i + 1);
-            LatLng firstLatLng = new LatLng(firstpoint.getLatitude(),
-                    firstpoint.getLongitude());
-            LatLng secondLatLng = new LatLng(secondpoint.getLatitude(),
-                    secondpoint.getLongitude());
+            AMapLocation firstPoint = list.get(i);
+            AMapLocation secondPoint = list.get(i + 1);
+            LatLng firstLatLng = new LatLng(firstPoint.getLatitude(),
+                    firstPoint.getLongitude());
+            LatLng secondLatLng = new LatLng(secondPoint.getLatitude(),
+                    secondPoint.getLongitude());
             double betweenDis = AMapUtils.calculateLineDistance(firstLatLng,
                     secondLatLng);
             distance = (float) (distance + betweenDis);
@@ -220,12 +211,6 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
         return distance;
     }
 
-    //讲时间戳转化为时间
-    private String getcueDate(long time) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss ");
-        Date curDate = new Date(time);
-        return formatter.format(curDate);
-    }
 
     /**
      * 方法必须重写
@@ -269,8 +254,44 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+        confirmExit();
+    }
+
+    private void confirmExit() {
+        if (exitDialog == null) {
+            exitDialog = new AlertDialog.Builder(this)
+                    .setTitle(R.string.sure_to_exit)
+                    .setIcon(R.drawable.personal_icon)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            setResult(RESULT_MAP_ACTIVITY, new Intent().putExtra("distance", mDistance)); //时间记录器自带时间统计，不需要传回。
+                            TimeRecorder.getInstance().addOnTimePlusOneSecondListener(LocationActivity.this);//注销时间通知回调
+                            TimeRecorder.getInstance().switchStatus();
+                            finish();
+                        }
+                    }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    }).create();
+        }
+        exitDialog.show();
+    }
+
+
+    //时间通知回调
+    @Override
+    public void onTimePlusOneSecond(int count) {
+        if (mRunningDuration != null) {
+            mRunningDuration.post(new Runnable() {
+                @Override
+                public void run() {
+                    mRunningDuration.setText(StaticUtils.secondToTime(++mDuration));
+                }
+            });
+        }
     }
 }
 

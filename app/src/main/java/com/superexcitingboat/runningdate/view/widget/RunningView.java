@@ -72,4 +72,8 @@ public class RunningView extends ImageView {
         this.time = time;
         invalidate();
     }
+
+    public String getTime() {
+        return time;
+    }
 }

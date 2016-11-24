@@ -52,6 +52,18 @@ public class TimeRecorder {
         enabled = false;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public boolean isRecording() {
+        return recording;
+    }
+
     private class TimeThread extends Thread {
         @Override
         public void run() {

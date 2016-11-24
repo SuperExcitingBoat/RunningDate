@@ -2,7 +2,6 @@ package com.superexcitingboat.runningdate.utils.Counter;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.util.Log;
 
 import com.superexcitingboat.runningdate.BuildConfig;
@@ -10,7 +9,7 @@ import com.superexcitingboat.runningdate.BuildConfig;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class StepDetector implements SensorEventListener {
+public class StepDetector implements TypedSensorEventListener {
     private final String TAG = "StepDetector";
     //存放三轴数据
     private final int valueNum = 5;
@@ -63,24 +62,31 @@ public class StepDetector implements SensorEventListener {
     // 倒计时3.5秒，3.5秒内不会显示计步，用于屏蔽细微波动
     private long duration = 3500;
     private TimeCount time;
-    private OnSensorChangeListener onSensorChangeListener;
-
-    public interface OnSensorChangeListener {
-        void onChange(int step);
-    }
+    private OnStepChangeListener onStepChangeListener;
 
     public void onAccuracyChanged(Sensor arg0, int arg1) {
     }
 
-    public OnSensorChangeListener getOnSensorChangeListener() {
-        return onSensorChangeListener;
+    public OnStepChangeListener getOnStepChangeListener() {
+        return onStepChangeListener;
     }
 
-    public void setOnSensorChangeListener(
-            OnSensorChangeListener onSensorChangeListener) {
-        this.onSensorChangeListener = onSensorChangeListener;
+    @Override
+    public void setOnStepChangeListener(OnStepChangeListener onStepChangeListener) {
+        this.onStepChangeListener = onStepChangeListener;
     }
 
+    @Override
+    public void removeOnStepChangeListener() {
+        onStepChangeListener = null;
+    }
+
+    @Override
+    public int getSensorType() {
+        return Sensor.TYPE_ACCELEROMETER;
+    }
+
+    @Override
     public void onSensorChanged(SensorEvent event) {
         Sensor sensor = event.sensor;
         synchronized (this) {
@@ -112,7 +118,7 @@ public class StepDetector implements SensorEventListener {
                 if (timeOfNow - timeOfLastPeak >= 200 && (timeOfNow - timeOfLastPeak) <= 2000 && (peakOfWave - valleyOfWave >= threadValue)) {
                     timeOfThisPeak = timeOfNow;
                     preStep();//通知Listener
-                }else if (timeOfNow - timeOfLastPeak >= 200 && (peakOfWave - valleyOfWave >= initialValue)) {
+                } else if (timeOfNow - timeOfLastPeak >= 200 && (peakOfWave - valleyOfWave >= initialValue)) {
                     timeOfThisPeak = timeOfNow;
                     threadValue = peakValleyThread(peakOfWave - valleyOfWave);
                 }
@@ -137,8 +143,8 @@ public class StepDetector implements SensorEventListener {
             }
         } else if (countTimeState == 2) {
             currentStep++;
-            if (onSensorChangeListener != null) {
-                onSensorChangeListener.onChange(currentStep);
+            if (onStepChangeListener != null) {
+                onStepChangeListener.onStepChange(currentStep);
             }
         }
     }

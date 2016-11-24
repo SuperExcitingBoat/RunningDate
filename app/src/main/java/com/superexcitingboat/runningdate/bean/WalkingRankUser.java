@@ -1,15 +1,11 @@
 package com.superexcitingboat.runningdate.bean;
 
-public class RankedUser extends User {
-    private int rank;
+public class WalkingRankUser extends RankUser {
     private int stepCount;
 
-    public int getRank() {
-        return rank;
-    }
-
-    public void setRank(int rank) {
-        this.rank = rank;
+    public WalkingRankUser(String username, int rank, int stepCount) {
+        super(username, rank);
+        this.stepCount = stepCount;
     }
 
     public int getStepCount() {

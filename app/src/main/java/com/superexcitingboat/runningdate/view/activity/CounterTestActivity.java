@@ -1,6 +1,5 @@
 package com.superexcitingboat.runningdate.view.activity;
 
-import android.hardware.Sensor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,12 +8,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.superexcitingboat.runningdate.R;
+import com.superexcitingboat.runningdate.utils.Counter.OnStepChangeListener;
 import com.superexcitingboat.runningdate.utils.Counter.StepDetector;
-import com.superexcitingboat.runningdate.utils.Counter.StepListener;
 import com.superexcitingboat.runningdate.utils.Counter.StepRecorder;
 import com.superexcitingboat.runningdate.utils.TimeRecorder;
 
-public class CounterTestActivity extends AppCompatActivity implements StepRecorder.OnStepChangeListener, View.OnClickListener {
+public class CounterTestActivity extends AppCompatActivity implements OnStepChangeListener, View.OnClickListener {
     private static final String TAG = "CounterTestActivity";
     private TextView stepCount;
     private TextView stepSum;
@@ -43,8 +42,6 @@ public class CounterTestActivity extends AppCompatActivity implements StepRecord
         findViewById(R.id.reset_step).setOnClickListener(this);
         StepRecorder.getInstance().addOnStepChangeListener(this);
 
-        new StepListener((TextView) findViewById(R.id.native_step_count_1), Sensor.TYPE_STEP_COUNTER);
-        new StepListener((TextView) findViewById(R.id.native_step_count_2), Sensor.TYPE_STEP_DETECTOR);
     }
 
     @Override
@@ -66,33 +63,33 @@ public class CounterTestActivity extends AppCompatActivity implements StepRecord
 
     private void plus() {
         if (aSwitch.isChecked()) {
-            StepDetector.MAX_VALUE += 0.5;
+            StepDetector.MAX_VALUE += 0.1;
             maxAccelerator.setText("max:" + StepDetector.MAX_VALUE);
         } else {
-            StepDetector.MIN_VALUE += 0.5;
+            StepDetector.MIN_VALUE += 0.1;
             minAccelerator.setText("min:" + StepDetector.MIN_VALUE);
         }
     }
 
     private void sub() {
         if (aSwitch.isChecked()) {
-            StepDetector.MAX_VALUE -= 0.5;
+            StepDetector.MAX_VALUE -= 0.1;
             maxAccelerator.setText("max:" + StepDetector.MAX_VALUE);
         } else {
-            StepDetector.MIN_VALUE -= 0.5;
+            StepDetector.MIN_VALUE -= 0.1;
             minAccelerator.setText("min:" + StepDetector.MIN_VALUE);
         }
     }
 
     private void resetCount() {
         count = 0;
-        stepCount.setText("count:" + count);
+        stepCount.setText("mile:" + count);
     }
 
     @Override
     public void onStepChange(int step) {
         count++;
-        stepCount.setText("count:" + count);
+        stepCount.setText("mile:" + count);
         stepSum.setText("sum:" + step);
     }
 

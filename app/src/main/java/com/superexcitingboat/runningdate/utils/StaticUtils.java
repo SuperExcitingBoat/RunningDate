@@ -8,6 +8,9 @@ import android.widget.Toast;
 
 import com.superexcitingboat.runningdate.config.Api;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class StaticUtils {//一些工具方法可以扔在这儿
 
     public static void shareApp(Context context) {
@@ -47,6 +50,9 @@ public class StaticUtils {//一些工具方法可以扔在这儿
         int tmp = second / 3600;
         second = second - tmp * 3600;
         String h = tmp > 9 ? "" + tmp : "0" + tmp;
+        if (Integer.valueOf(h) > 99) {
+            h = "99";
+        }
         tmp = second / 60;
         second = second - tmp * 60;
         String min = tmp > 9 ? "" + tmp : "0" + tmp;
@@ -57,7 +63,21 @@ public class StaticUtils {//一些工具方法可以扔在这儿
     public static String cutNumber(double number, int bit) {
         String tmp = String.valueOf(number);
         int index = tmp.indexOf(".");
+        if (tmp.length() - index - 1 < bit) {
+            return tmp;
+        }
         return tmp.substring(0, index + bit + 1);
     }
+
+    /**
+     * @param timestamp timestamp
+     * @return date like 2016-11-24  14:59:26
+     */
+    public static String timeStampToDate(long timestamp) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss ");
+        Date curDate = new Date(timestamp);
+        return formatter.format(curDate);
+    }
+
 
 }

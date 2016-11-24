@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.view.adapter.RankingViewPagerAdapter;
-import com.superexcitingboat.runningdate.view.fragment.ranking.RunningRankingFragment;
-import com.superexcitingboat.runningdate.view.fragment.ranking.WalkingRankingFragment;
+import com.superexcitingboat.runningdate.view.fragment.ranking.RunningRankFragment;
+import com.superexcitingboat.runningdate.view.fragment.ranking.WalkingRankFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +22,15 @@ import java.util.List;
  */
 
 public class RankingFragment extends Fragment {
-    View view;
-    RankingViewPagerAdapter mRankingViewPagerAdapter;
-    String mTitles[]=new String[]{"跑步","计步"};
-    List<Fragment> mFragments;
-    ViewPager mViewPager;
-    TabLayout mTablayout;
+    private View view;
+    private RankingViewPagerAdapter mRankingViewPagerAdapter;
+    private String mTitles[] = new String[]{"跑步", "计步"};
+    private List<Fragment> mFragments;
+    private ViewPager mViewPager;
+    private TabLayout mTablayout;
+    private RunningRankFragment runningRankFragment;
+    private WalkingRankFragment walkingRankFragment;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,8 +41,10 @@ public class RankingFragment extends Fragment {
 
     private void initView() {
         mFragments = new ArrayList<>();
-        mFragments.add(new RunningRankingFragment());
-        mFragments.add(new WalkingRankingFragment());
+        runningRankFragment = new RunningRankFragment();
+        walkingRankFragment = new WalkingRankFragment();
+        mFragments.add(runningRankFragment);
+        mFragments.add(walkingRankFragment);
         mRankingViewPagerAdapter = new RankingViewPagerAdapter(getChildFragmentManager());
         mRankingViewPagerAdapter.setTitles(mTitles);
         mRankingViewPagerAdapter.setFragments(mFragments);

@@ -1,9 +1,9 @@
 package com.superexcitingboat.runningdate.IView;
 
-import com.superexcitingboat.runningdate.bean.RankedUser;
+import com.superexcitingboat.runningdate.bean.RankUser;
 
 import java.util.List;
 
-public interface IRankView {
-    void rank(List<RankedUser> rankedUsers);
+public interface IRankView<T extends RankUser> {
+    void rank(List<T> rankUsers);
 }

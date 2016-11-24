@@ -3,28 +3,24 @@ package com.superexcitingboat.runningdate.utils.Counter;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.util.Log;
 
 import java.util.ArrayList;
 
-import static android.content.Context.SENSOR_SERVICE;
-
-public class StepRecorder implements StepDetector.OnSensorChangeListener {
+public class StepRecorder implements OnStepChangeListener {
+    private static final String TAG = "StepRecorder";
     private int count;
-    private StepDetector stepDetector;
+    private Context context;
+    private TypedSensorEventListener typedSensorEventListener;
     private SensorManager sensorManager;
-    private static StepRecorder ourInstance = new StepRecorder();
-    ;
+    private static StepRecorder mInstance = new StepRecorder();
     private ArrayList<OnStepChangeListener> onStepChangeListeners;
 
     private StepRecorder() {
     }
 
     public static StepRecorder getInstance() {
-        return ourInstance;
-    }
-
-    public interface OnStepChangeListener {
-        void onStepChange(int step);
+        return mInstance;
     }
 
     public void removeOnStepChangeListener(OnStepChangeListener onStepChangeListener) {
@@ -40,18 +36,21 @@ public class StepRecorder implements StepDetector.OnSensorChangeListener {
     }
 
     public void init(Context context) {
-        stepDetector = new StepDetector();
-        sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
-        sensorManager.registerListener(stepDetector,
+        this.context = context;
+        typedSensorEventListener = new StepDetector();//一行代码替换计步算法，策略模式
+        sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        sensorManager.registerListener(typedSensorEventListener,
                 sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_FASTEST);
-        stepDetector.setOnSensorChangeListener(this);
+        typedSensorEventListener.setOnStepChangeListener(this);
         onStepChangeListeners = new ArrayList<>();
     }
 
+
     @Override
-    public void onChange(int step) {
+    public void onStepChange(int step) {
         count = step;
+        Log.d(TAG, "onStepChange: CurrentStep: " + step);
         for (OnStepChangeListener onStepChangeListener : onStepChangeListeners) {
             onStepChangeListener.onStepChange(count);
         }

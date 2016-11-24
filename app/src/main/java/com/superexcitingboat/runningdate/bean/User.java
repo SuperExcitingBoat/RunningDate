@@ -1,12 +1,12 @@
 package com.superexcitingboat.runningdate.bean;
 
 public class User {
-    private int uid;
-    private String username;
-    private String avatar;
-    private String password;
-    private String token;
-    private String description;
+    int uid;
+    String username;
+    String avatar;
+    String password;
+    String token;
+    String description;
 
 
     public User() {

@@ -1,6 +1,6 @@
 package com.superexcitingboat.runningdate.network.service;
 
-import com.superexcitingboat.runningdate.bean.RankedUser;
+import com.superexcitingboat.runningdate.bean.RunningRankUser;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import retrofit2.http.POST;
 import rx.Observable;
 
 
-public interface RankService {
+public interface RunningRankService {
 
     @FormUrlEncoded
     @POST("step")
-    Observable<List<RankedUser>> getRankList(@Field("uid") int uid);
+    Observable<List<RunningRankUser>> getRankList(@Field("uid") int uid);
 }
 

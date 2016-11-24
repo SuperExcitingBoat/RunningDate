@@ -7,11 +7,11 @@ import com.superexcitingboat.runningdate.model.RecordModel;
 import rx.Observer;
 
 
-public class RecordPresenter implements Observer<Record> {
+public class WalkingRecordPresenter implements Observer<Record> {
     private IRecordView iRecordView;
     private RecordModel recordModel;
 
-    public RecordPresenter() {
+    public WalkingRecordPresenter() {
         this.recordModel = new RecordModel();
     }
 
