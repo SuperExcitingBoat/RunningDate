@@ -91,7 +91,7 @@ public class WalkingRankAdapter extends RecyclerArrayAdapter<WalkingRankUser> im
                     .load(walkingRankUser.getAvatar())
                     .into(icon);
             name.setText(walkingRankUser.getUsername());
-            count.setText(walkingRankUser.getStepCount() + "");
+           // count.setText(walkingRankUser.getStepCount() + "");
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

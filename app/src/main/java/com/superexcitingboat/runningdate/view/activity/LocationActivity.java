@@ -100,9 +100,9 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
     private void setUpMap() {
         //自定义定位的小蓝点
         MyLocationStyle myLocationStyle = new MyLocationStyle();
-        myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.drawable.location_marker));//设置图标
-        myLocationStyle.strokeColor(Color.BLACK);//圆形边框颜色
-        myLocationStyle.radiusFillColor(Color.argb(100, 0, 0, 180));//圆形的填充颜色
+        myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.drawable.pic_guilder));//设置图标
+        myLocationStyle.strokeColor(Color.WHITE);//圆形边框颜色
+        myLocationStyle.radiusFillColor(Color.argb(40,54,217,255));//圆形的填充颜色
         myLocationStyle.strokeWidth(1.0f);// 设置圆形的边框粗细
 
         mAMap.setMyLocationStyle(myLocationStyle);
@@ -110,8 +110,9 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
         mAMap.setLocationSource(this);
         mAMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
         mAMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
-        mAMap.moveCamera(CameraUpdateFactory.zoomTo(19));  //设置缩放级别
+        mAMap.moveCamera(CameraUpdateFactory.zoomTo(18));  //设置缩放级别
         mAMap.getUiSettings().setZoomControlsEnabled(false);
+
     }
 
     /**
@@ -135,8 +136,8 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
                 //开始定位的时间，之后会放在开始跑步的方法里
                 mPathRecord = new PathRecord();
             }
-            if (oldLatlng != newLatlng && aMapLocation.getAccuracy() <= 5) {
-                PolylineOptions polylineOptions = new PolylineOptions().add(oldLatlng, newLatlng).width(10).color(Color.argb(255, 1, 1, 1));
+            if (oldLatlng != newLatlng && aMapLocation.getAccuracy() <= 22225) {
+                PolylineOptions polylineOptions = new PolylineOptions().add(oldLatlng, newLatlng).width(10).color(Color.argb(255,78,217,255));
                 oldLatlng = newLatlng;
                 mAMap.addPolyline(polylineOptions);
 
