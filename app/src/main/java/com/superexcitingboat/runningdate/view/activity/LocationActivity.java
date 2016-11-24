@@ -148,7 +148,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
             mEndTime = System.currentTimeMillis();
             mRunningDuration.setText(TimeUtil.secToTime((int)getDuration()));
             DecimalFormat df = new DecimalFormat("0.0");
-            mRunningDistance.setText(df.format( getDistance(mPathRecord.getPathline())/1000f )+" km");
+            mRunningDistance.setText(df.format( getDistance(mPathRecord.getPathline()))+" km");
             SharedPreferenceUtils.putString(getApplicationContext(),"duration",TimeUtil.secToTime((int)getDuration()));
         }
 
