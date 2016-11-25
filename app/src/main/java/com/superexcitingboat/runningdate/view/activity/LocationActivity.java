@@ -136,7 +136,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
                 //开始定位的时间，之后会放在开始跑步的方法里
                 mPathRecord = new PathRecord();
             }
-            if (oldLatlng != newLatlng && aMapLocation.getAccuracy() <= 22225) {
+            if (oldLatlng != newLatlng && aMapLocation.getAccuracy() <= 15) {
                 PolylineOptions polylineOptions = new PolylineOptions().add(oldLatlng, newLatlng).width(10).color(Color.argb(255,78,217,255));
                 oldLatlng = newLatlng;
                 mAMap.addPolyline(polylineOptions);
@@ -148,7 +148,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
             mRunningDuration.setText(StaticUtils.secondToTime(mDuration));
             DecimalFormat df = new DecimalFormat("0.0");
             mDistance = getDistance(mPathRecord.getPathline());
-            mRunningDistance.setText(df.format(mDistance) + " km");
+            mRunningDistance.setText(df.format(mDistance/1000f) + " km");
             SharedPreferenceUtils.putString(getApplicationContext(), "duration", StaticUtils.secondToTime(mDuration));
         }
 
