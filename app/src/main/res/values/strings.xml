@@ -10,8 +10,8 @@
     <string name="word_left">left</string>
     <string name="step">steps</string>
     <string name="km">km</string>
-    <string name="sure_to_exit">Are you sure to exit?</string>
-    <string name="yes">yes</string>
-    <string name="no">no</string>
+    <string name="sure_to_exit">确认结束跑步吗？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
 
 </resources>

@@ -128,23 +128,21 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
             LatLng newLatlng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());
             mAMap.moveCamera(CameraUpdateFactory.changeLatLng(newLatlng));
 
-            //判断是否为第一次定位经纬度
-            if (isFirstRecord) {
-                oldLatlng = newLatlng;
-                isFirstRecord = false;
-
-                //开始定位的时间，之后会放在开始跑步的方法里
-                mPathRecord = new PathRecord();
-            }
-            if (oldLatlng != newLatlng && aMapLocation.getAccuracy() <= 15) {
+            if (oldLatlng != newLatlng && aMapLocation.getAccuracy() <= 5) {
+                //判断是否为第一次定位经纬度
+                if (isFirstRecord) {
+                    oldLatlng = newLatlng;
+                    isFirstRecord = false;
+                    //开始定位的时间，之后会放在开始跑步的方法里
+                    mPathRecord = new PathRecord();
+                }
                 PolylineOptions polylineOptions = new PolylineOptions().add(oldLatlng, newLatlng).width(10).color(Color.argb(255,78,217,255));
                 oldLatlng = newLatlng;
                 mAMap.addPolyline(polylineOptions);
-
+                mPathRecord.addpoint(aMapLocation);
             }
             Log.d(TAG, "onLocationChanged: 精度" + aMapLocation.getAccuracy());
             Log.d(TAG, "onLocationChanged: " + aMapLocation.getAddress());
-            mPathRecord.addpoint(aMapLocation);
             mRunningDuration.setText(StaticUtils.secondToTime(mDuration));
             DecimalFormat df = new DecimalFormat("0.0");
             mDistance = getDistance(mPathRecord.getPathline());
@@ -179,7 +177,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
             // 设置为高精度定位模式(高精度模式)
             mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
 
-            mLocationOption.setInterval(2000);
+            mLocationOption.setInterval(1500);
             // 设置定位参数
             mLocationClient.setLocationOption(mLocationOption);
             // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
@@ -262,7 +260,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
         if (exitDialog == null) {
             exitDialog = new AlertDialog.Builder(this)
                     .setTitle(R.string.sure_to_exit)
-                    .setIcon(R.drawable.personal_icon)
+                    //.setIcon(R.drawable.personal_icon)
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {

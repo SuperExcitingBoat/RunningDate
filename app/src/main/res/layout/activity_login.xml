@@ -58,21 +58,23 @@
         android:layout_marginRight="50dp"
         />
 
-    <!--<ImageView-->
-        <!--android:layout_width="20dp"-->
-        <!--android:layout_height="20dp"-->
-        <!--android:src="@drawable/pic_password"-->
-        <!--android:id="@+id/imageView"-->
-        <!--android:layout_alignTop="@+id/login_password"-->
-        <!--android:layout_toStartOf="@+id/login_password" />-->
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/pic_password"
+        android:id="@+id/imageView"
+        android:scaleType="fitXY"
+        android:layout_alignTop="@+id/login_password"
+        android:layout_toStartOf="@+id/login_password"
+        android:layout_marginTop="11dp" />
 
-    <!--<ImageView-->
-        <!--android:layout_width="20dp"-->
-        <!--android:layout_height="20dp"-->
-        <!--android:src="@drawable/pic_account"-->
-        <!--android:layout_marginRight="5dp"-->
-        <!--android:layout_marginLeft="50dp"-->
-        <!--android:id="@+id/imageView2"-->
-        <!--android:layout_alignTop="@+id/login_username"-->
-        <!--android:layout_toStartOf="@+id/login_username" />-->
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/pic_account"
+        android:id="@+id/imageView2"
+        android:layout_above="@+id/login_password"
+        android:layout_toStartOf="@+id/login_username"
+        android:scaleType="fitXY"
+        android:layout_marginBottom="10dp" />
 </RelativeLayout>
