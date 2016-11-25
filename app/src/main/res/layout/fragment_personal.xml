@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/pic_ranking_bg"
     android:orientation="vertical"
-    android:background="@drawable/pic_ranking_bg">
+    >
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -30,7 +31,10 @@ public class RunningRankFragment extends Fragment implements OnItemClickListener
     public TextView rank;
     public TextView name;
     public TextView mile;
+    public TextView unit;
     public CircleImageView icon;
+    public RelativeLayout header;
+
     private RunningRankAdapter runningRankAdapter;
 
 
@@ -45,7 +49,17 @@ public class RunningRankFragment extends Fragment implements OnItemClickListener
         name = (TextView) view.findViewById(R.id.rank_name);
         mile = (TextView) view.findViewById(R.id.rank_count);
         icon = (CircleImageView) view.findViewById(R.id.rank_icon);
-        ((TextView) view.findViewById(R.id.rank_unit)).setText(R.string.km);
+        unit=(TextView) view.findViewById(R.id.rank_unit);
+        unit.setText(R.string.km);
+        header = (RelativeLayout) view.findViewById(R.id.rank_header);
+        header.setBackgroundResource(R.drawable.pic_my_ranking_bg);
+
+        rank.setTextColor(getResources().getColor(R.color.shi_jian));
+        name.setTextColor(getResources().getColor(R.color.shi_jian));
+        mile.setTextColor(getResources().getColor(R.color.shi_jian));
+        unit.setTextColor(getResources().getColor(R.color.shi_jian));
+
+
         easyRecyclerView = (EasyRecyclerView) view.findViewById(R.id.easyrecyclerview);
         easyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         runningRankAdapter = new RunningRankAdapter(getContext());

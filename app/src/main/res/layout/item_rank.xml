@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/default_64_text_height"
-    android:background="#00000000"
+    android:background="@drawable/pic_my_ranking_bg"
     >
 
     <TextView
