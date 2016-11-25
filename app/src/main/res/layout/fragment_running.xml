@@ -1,133 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pic_sports_background"
-    >
+    android:orientation="vertical">
     <!--<ImageView-->
-        <!--android:layout_width="300dp"-->
-        <!--android:layout_height="300dp"-->
-        <!--android:background="@drawable/running_circle"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="54dp" />-->
-<com.superexcitingboat.runningdate.view.widget.RunningView
-    android:id="@+id/running_count"
-    android:layout_width="250dp"
-    android:layout_height="250dp"
-    android:src="@drawable/running_circle"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="54dp"
-    android:background="?android:attr/actionBarItemBackground"
-    android:clickable="true"
-    />
+    <!--android:layout_width="300dp"-->
+    <!--android:layout_height="300dp"-->
+    <!--android:background="@drawable/running_circle"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="54dp" />-->
+    <com.superexcitingboat.runningdate.view.widget.RunningView
+        android:id="@+id/running_count"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:background="?android:attr/actionBarItemBackground"
+        android:clickable="true"
+        android:src="@drawable/running_circle" />
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_running_history"
         android:layout_width="match_parent"
         android:layout_height="145dp"
-        android:background="@drawable/rl_running_history"
-        android:id="@+id/rl_running_history"
-        android:visibility="invisible"
         android:layout_alignParentBottom="true"
-        >
+        android:background="@drawable/rl_running_history"
+        android:visibility="invisible">
 
         <ImageView
             android:id="@+id/aa"
             android:layout_width="23dp"
             android:layout_height="23dp"
-            android:background="@drawable/a"
-            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="43dp"
-            android:layout_marginTop="40dp" />
+            android:layout_marginTop="40dp"
+            android:background="@drawable/a" />
 
         <ImageView
             android:id="@+id/bb"
             android:layout_width="23dp"
             android:layout_height="23dp"
-            android:background="@drawable/b"
             android:layout_alignTop="@+id/aa"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/b" />
 
         <ImageView
             android:id="@+id/cc"
             android:layout_width="23dp"
             android:layout_height="23dp"
-            android:background="@drawable/c"
-            android:layout_alignTop="@+id/bb"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="43dp" />
+            android:layout_alignTop="@+id/bb"
+            android:layout_marginEnd="43dp"
+            android:background="@drawable/c" />
+
         <TextView
             android:id="@+id/_aa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/running_result"
-            android:text="距离"
-            android:textSize="11sp"
-            android:layout_marginTop="50dp"
+            android:layout_alignStart="@+id/aa"
             android:layout_below="@+id/aa"
-            android:layout_alignStart="@+id/aa" />
+            android:layout_marginTop="50dp"
+            android:text="距离"
+            android:textColor="@color/running_result"
+            android:textSize="11sp" />
+
         <TextView
             android:id="@+id/tv_running_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0 km"
-            android:textSize="19sp"
             android:layout_marginStart="27dp"
             android:layout_marginTop="70dp"
-            />
+            android:text="0.0 km"
+            android:textSize="19sp" />
+
         <TextView
             android:id="@+id/_bb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="时长"
-            android:textSize="11sp"
-            android:textColor="@color/running_result"
             android:layout_alignBaseline="@+id/_aa"
             android:layout_alignBottom="@+id/_aa"
-            android:layout_alignStart="@+id/bb" />
+            android:layout_alignStart="@+id/bb"
+            android:text="时长"
+            android:textColor="@color/running_result"
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/tv_running_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="01:05:23"
-            android:textSize="19sp"
             android:layout_alignBaseline="@+id/tv_running_distance"
             android:layout_alignBottom="@+id/tv_running_distance"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:text="00:00:00"
+            android:textSize="19sp" />
 
         <TextView
             android:id="@+id/_cc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="耗能"
-            android:textColor="@color/running_result"
-            android:textSize="11sp"
             android:layout_alignBaseline="@+id/_bb"
             android:layout_alignBottom="@+id/_bb"
-            android:layout_alignStart="@+id/cc" />
+            android:layout_alignStart="@+id/cc"
+            android:text="耗能"
+            android:textColor="@color/running_result"
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/tv_running_energy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="426 kcal"
-            android:textSize="19sp"
             android:layout_alignBaseline="@+id/tv_running_duration"
             android:layout_alignBottom="@+id/tv_running_duration"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp" />
+            android:layout_marginEnd="15dp"
+            android:text="0 kcal"
+            android:textSize="19sp" />
 
 
     </RelativeLayout>
+
     <Button
         android:id="@+id/bt_running_drawer"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@drawable/sports_drawer"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/sports_drawer"
 
         />
 

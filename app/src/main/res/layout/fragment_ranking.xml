@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"
         android:text="排名"
-        android:textColor="#fff"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <android.support.design.widget.TabLayout
@@ -24,9 +24,9 @@
         android:layout_below="@+id/tv_ranking_title"
         android:layout_marginTop="3dp"
         app:tabGravity="center"
-        app:tabIndicatorColor="#fff"
+        app:tabIndicatorColor="@color/white"
         app:tabIndicatorHeight="2dp"
-        app:tabSelectedTextColor="#fff"
+        app:tabSelectedTextColor="@color/white"
         app:tabTextColor="#d6eefe"
         />
 

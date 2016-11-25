@@ -15,7 +15,6 @@ import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.utils.Counter.OnStepChangeListener;
 import com.superexcitingboat.runningdate.utils.Counter.StepRecorder;
 import com.superexcitingboat.runningdate.utils.StaticUtils;
-import com.superexcitingboat.runningdate.utils.TimeRecorder;
 import com.superexcitingboat.runningdate.view.widget.WalkingView;
 
 /**
@@ -91,7 +90,7 @@ public class WalkingFragment extends Fragment implements OnStepChangeListener {
     public void onStepChange(int step) {
         if (isClicked && mWalkingCount != null) {
             mWalkingCount.setSteps(step);
-            mDistance.setText(StaticUtils.cutNumber(step * 0.75 / 1000, 2) + "km");
+            mDistance.setText(StaticUtils.cutNumber(step * 0.75 / 1000, 2) + " km");
         }
     }
 }

@@ -57,7 +57,7 @@ public class WalkingView extends ImageView {
         super.onDraw(canvas);
         width = getWidth();
         height = getHeight();
-        mPaint.setColor(getResources().getColor(R.color.shi_jian));
+        mPaint.setColor(getResources().getColor(R.color.white));
         mPaint.setAntiAlias(true);
         mPaint.setTextSize(width / 8);
         mPaint.setTypeface(Typeface.DEFAULT_BOLD);

@@ -14,7 +14,7 @@
             android:layout_height="180dp"
            >
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.superexcitingboat.runningdate.utils.CircleImageView
                 android:id="@+id/iv_user_center_login"
                 android:src="@drawable/touxiang"
                 android:layout_width="70dp"
@@ -24,8 +24,6 @@
                 android:layout_marginTop="29dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                app:civ_border_width="0.1dp"
-                app:civ_border_color="#fff"
                 />
 
             <TextView
@@ -39,7 +37,7 @@
                 android:ellipsize="end"
                 android:maxLength="10"
                 android:text="点击登录"
-                android:textColor="#fff"
+                android:textColor="@color/white"
                 android:textSize="16sp"/>
 
             <!--<ImageView-->

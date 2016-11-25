@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#3fb4f7</color>
     <color name="colorAccent">#3fb4f7</color>
     <color name="none">#0000</color>
+    <color name="white">#FFF</color>
 
     <color name="background">#3fb4f7</color>
     <color name="tianyi_blue">#66CCFF</color>
@@ -12,7 +13,6 @@
     <color name="out_circle">#a2e4fb</color>
     <color name="running_bg">#36d9ff</color>
     <color name="in_circle">#d9f4fd</color>
-    <color name="shi_jian">#ffffff</color>
-    <color name="xiao_yuan_dian">#40fe9c</color>
+    <color name="little_circle">#40fe9c</color>
     <color name="running_result">#999999</color>
 </resources>

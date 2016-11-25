@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.bean.WalkingRankUser;
+import com.superexcitingboat.runningdate.utils.CircleImageView;
 import com.superexcitingboat.runningdate.utils.CurrentUser;
 import com.superexcitingboat.runningdate.view.activity.RecordActivity;
 import com.superexcitingboat.runningdate.view.adapter.OnItemClickListener;
@@ -23,9 +23,8 @@ import com.superexcitingboat.runningdate.view.adapter.WalkingRankAdapter;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
-public class WalkingRankFragment extends Fragment implements OnItemClickListener<WalkingRankUser>,WalkingRankAdapter.OnDataReceivedListener {
+public class WalkingRankFragment extends Fragment implements OnItemClickListener<WalkingRankUser>, WalkingRankAdapter.OnDataReceivedListener {
 
     private EasyRecyclerView easyRecyclerView;
     public TextView rank;
@@ -47,21 +46,22 @@ public class WalkingRankFragment extends Fragment implements OnItemClickListener
         rank = (TextView) view.findViewById(R.id.rank_rank);
         name = (TextView) view.findViewById(R.id.rank_name);
         count = (TextView) view.findViewById(R.id.rank_count);
-        icon = (CircleImageView) view.findViewById(R.id.rank_icon);
+        icon = (CircleImageView) view.findViewById(R.id.ranking_icon);
         unit=(TextView) view.findViewById(R.id.rank_unit);
         unit.setText(R.string.step);
         header = (RelativeLayout) view.findViewById(R.id.rank_header);
         header.setBackgroundResource(R.drawable.pic_my_ranking_bg);
 
-        rank.setTextColor(getResources().getColor(R.color.shi_jian));
-        name.setTextColor(getResources().getColor(R.color.shi_jian));
-        count.setTextColor(getResources().getColor(R.color.shi_jian));
-        unit.setTextColor(getResources().getColor(R.color.shi_jian));
+        rank.setTextColor(getResources().getColor(R.color.white));
+        name.setTextColor(getResources().getColor(R.color.white));
+        count.setTextColor(getResources().getColor(R.color.white));
+        unit.setTextColor(getResources().getColor(R.color.white));
 
 
         easyRecyclerView = (EasyRecyclerView) view.findViewById(R.id.easyrecyclerview);
         easyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         walkingRankAdapter = new WalkingRankAdapter(getContext());
+        walkingRankAdapter.setOnDataReceivedListener(this);
         easyRecyclerView.setAdapter(walkingRankAdapter);
         easyRecyclerView.setRefreshListener(walkingRankAdapter);
         walkingRankAdapter.onLoadMore();
@@ -81,7 +81,7 @@ public class WalkingRankFragment extends Fragment implements OnItemClickListener
     @Override
     public void onDataReceived(List<WalkingRankUser> walkingRankUsers) {
         for (final WalkingRankUser walkingRankUser : walkingRankUsers) {
-            if (walkingRankUser.getUid() == CurrentUser.getWalkingRankUser().getUid()) {
+            if (walkingRankUser.getUid() == CurrentUser.getRankUser().getUid()) {
                 rank.post(new Runnable() {
                     @Override
                     public void run() {
@@ -89,7 +89,7 @@ public class WalkingRankFragment extends Fragment implements OnItemClickListener
                         name.setText(walkingRankUser.getUsername());
                         count.setText(walkingRankUser.getStepCount() + "");
                         Glide.with(WalkingRankFragment.this)
-                                .load(walkingRankUser.getAvatar())
+                                .load(walkingRankUser.getAvatar() == null ? R.drawable.personal_icon : walkingRankUser.getAvatar())
                                 .into(icon);
                     }
                 });

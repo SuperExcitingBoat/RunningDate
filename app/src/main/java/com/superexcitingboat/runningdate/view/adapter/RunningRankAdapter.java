@@ -6,17 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.superexcitingboat.runningdate.IView.IRankView;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.bean.RunningRankUser;
 import com.superexcitingboat.runningdate.presenter.RunningRankPresenter;
+import com.superexcitingboat.runningdate.utils.CircleImageView;
 import com.superexcitingboat.runningdate.utils.StaticUtils;
 
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RunningRankAdapter extends RecyclerArrayAdapter<RunningRankUser> implements RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, IRankView<RunningRankUser> {
 
@@ -89,11 +89,6 @@ public class RunningRankAdapter extends RecyclerArrayAdapter<RunningRankUser> im
     }
 
     public class ViewHolder extends BaseViewHolder<RunningRankUser> {
-//        public final TextView rank;
-//        public final TextView name;
-//        public final TextView mile;
-//        public final ImageButton icon;
-
         public final TextView rank;
         public final TextView name;
         public final TextView mile;
@@ -102,7 +97,7 @@ public class RunningRankAdapter extends RecyclerArrayAdapter<RunningRankUser> im
         public ViewHolder(ViewGroup parent) {
             super(parent, R.layout.item_ranking);
             rank = $(R.id.rank_rank);
-            icon = $(R.id.rank_icon);
+            icon = $(R.id.ranking_icon);
             name = $(R.id.rank_name);
             mile = $(R.id.rank_count);
             ((TextView) $(R.id.rank_unit)).setText(R.string.km);
@@ -111,10 +106,9 @@ public class RunningRankAdapter extends RecyclerArrayAdapter<RunningRankUser> im
         @Override
         public void setData(final RunningRankUser RunningRankUser) {
             rank.setText(RunningRankUser.getRank() + "");
-            //暂时显示头像
-//            Glide.with(getContext())
-//                    .load(RunningRankUser.getAvatar())
-//                    .into(icon);
+            Glide.with(getContext())
+                    .load(RunningRankUser.getAvatar())
+                    .into(icon);
             name.setText(RunningRankUser.getUsername());
             mile.setText(StaticUtils.cutNumber(RunningRankUser.getMile(), 1));
             itemView.setOnClickListener(new View.OnClickListener() {

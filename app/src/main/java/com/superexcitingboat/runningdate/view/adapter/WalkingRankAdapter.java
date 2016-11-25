@@ -13,10 +13,10 @@ import com.superexcitingboat.runningdate.IView.IRankView;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.bean.WalkingRankUser;
 import com.superexcitingboat.runningdate.presenter.WalkingRankPresenter;
+import com.superexcitingboat.runningdate.utils.CircleImageView;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class WalkingRankAdapter extends RecyclerArrayAdapter<WalkingRankUser> implements RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, IRankView<WalkingRankUser> {
 
@@ -97,7 +97,7 @@ public class WalkingRankAdapter extends RecyclerArrayAdapter<WalkingRankUser> im
         public ViewHolder(ViewGroup parent) {
             super(parent, R.layout.item_ranking);
             rank = $(R.id.rank_rank);
-            icon = $(R.id.rank_icon);
+            icon = $(R.id.ranking_icon);
             name = $(R.id.rank_name);
             count = $(R.id.rank_count);
             ((TextView) $(R.id.rank_unit)).setText(R.string.step);
@@ -110,7 +110,7 @@ public class WalkingRankAdapter extends RecyclerArrayAdapter<WalkingRankUser> im
                     .load(walkingRankUser.getAvatar())
                     .into(icon);
             name.setText(walkingRankUser.getUsername());
-            // count.setText(walkingRankUser.getStepCount() + "");
+             count.setText(walkingRankUser.getStepCount() + "");
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -30,7 +30,7 @@ public class RunningFragment extends Fragment {
     private RelativeLayout mRlRunningHirstory;
     private TextView mDistance;//距离
     private TextView mDuration;//时间
-    private TextView mEnergy;//耗能
+    private TextView mEnergy;//TODO 耗能
     private RunningView mRunningCount;//显示步数的view
 
     @Nullable
@@ -85,7 +85,7 @@ public class RunningFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_MAP_ACTIVITY && resultCode == LocationActivity.RESULT_MAP_ACTIVITY) {
-            mDistance.setText(StaticUtils.cutNumber(data.getFloatExtra("distance", 0), 2));
+            mDistance.setText(StaticUtils.cutNumber(data.getFloatExtra("distance", 0), 2) + " km");
             Log.d(TAG, "onActivityResult: distance: " + mDistance.getText().toString());
             mRunningCount.setTime(StaticUtils.secondToTime(TimeRecorder.getInstance().getCount()));
             mDuration.setText(mRunningCount.getTime());

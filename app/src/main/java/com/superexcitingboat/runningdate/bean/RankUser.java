@@ -15,4 +15,15 @@ public class RankUser extends User {
         this.username = username;
         this.rank = rank;
     }
+
+    public RankUser(String username, String avatar) {
+        this.avatar = avatar;
+        this.username = username;
+    }
+
+    public RankUser(String username, String avatar, int rank) {
+        this.avatar = avatar;
+        this.username = username;
+        this.rank = rank;
+    }
 }

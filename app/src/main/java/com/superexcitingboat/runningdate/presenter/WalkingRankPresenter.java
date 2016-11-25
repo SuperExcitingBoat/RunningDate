@@ -25,9 +25,13 @@ public class WalkingRankPresenter implements Observer<List<WalkingRankUser>> {
     public void getRankList() {
 //        walkingRankModel.getRankList(0, this);
         ArrayList<WalkingRankUser> rankUsers = new ArrayList<>();
-        rankUsers.add(new WalkingRankUser("user0", 0, 0));
-        rankUsers.add(new WalkingRankUser("user1", 1, 1));
-        rankUsers.add(new WalkingRankUser("user2", 2, 2));
+
+        rankUsers.add(new WalkingRankUser(0, "admin", "https://avatars0.githubusercontent.com/u/14852537?v=3&s=72", 1, 13543));
+        rankUsers.add(new WalkingRankUser(1, "低调虐菜", "https://commons.moegirl.org/extensions/Avatar/avatar.php?user=低调虐菜=小七-文库使用账户", 2, 12166));
+        rankUsers.add(new WalkingRankUser(2, "午时已到", "https://static.mengniang.org/common/thumb/8/84/Mccree.jpg/250px-Mccree.jpg", 3, 10321));
+        rankUsers.add(new WalkingRankUser(3, "妙尔尼尔", "https://commons.moegirl.org/extensions/Avatar/avatar.php?user=妙尔尼尔", 4, 8785));
+        rankUsers.add(new WalkingRankUser(4, "苍之诸神黄昏", "https://commons.moegirl.org/extensions/Avatar/avatar.php?user=苍之诸神黄昏", 5, 6356));
+        rankUsers.add(new WalkingRankUser(5, "感觉身体被掏空", "https://static.mengniang.org/common/3/3c/%E9%BA%A6%E7%88%B9%E8%BA%BA.png", 6, 5906));
         iRankView.rank(rankUsers);
     }
 

@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="100dp"
+    android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/rank_rank"
@@ -15,12 +16,11 @@
         android:layout_marginLeft="10dp"
         />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/rank_icon"
-        android:src="@drawable/touxiang"
+    <com.superexcitingboat.runningdate.utils.CircleImageView
+        android:id="@+id/ranking_icon"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="@color/none"
         android:clickable="false"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/rank_rank"
@@ -30,19 +30,17 @@
         android:id="@+id/rank_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SuperBigHead"
         android:textSize="16sp"
         android:textColor="#333333"
         android:layout_centerVertical="true"
         android:layout_marginLeft="20sp"
-        android:layout_toEndOf="@+id/rank_icon"
+        android:layout_toEndOf="@+id/ranking_icon"
         />
 
     <TextView
         android:id="@+id/rank_unit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="公里"
         android:textSize="12sp"
         android:textColor="#666666"
         android:layout_marginRight="10dp"
@@ -53,7 +51,6 @@
         android:id="@+id/rank_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="15"
         android:textSize="30sp"
         android:textColor="@color/background"
         android:layout_marginRight="10dp"

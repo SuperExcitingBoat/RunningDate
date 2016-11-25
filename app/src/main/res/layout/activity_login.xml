@@ -31,7 +31,7 @@
         android:background="@drawable/running_button_bg"
         android:text="@string/login"
         android:layout_marginTop="50dp"
-        android:textColor="#fff"
+        android:textColor="@color/white"
         android:textSize="15dp"
         />
 

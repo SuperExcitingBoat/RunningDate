@@ -25,16 +25,14 @@ public class RunningRankPresenter implements Observer<List<RunningRankUser>> {
     public void getRankList() {
 //        runningRankModel.getRankList(0, this);
         ArrayList<RunningRankUser> rankUsers = new ArrayList<>();
-        rankUsers.add(new RunningRankUser("user0", 0, 0));
-        rankUsers.add(new RunningRankUser("user1", 1, 1.1F));
-        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
-        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
-        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
-        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
-        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
-        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
-        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
-        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
+        rankUsers.add(new RunningRankUser(1, "午时已到", "https://static.mengniang.org/common/thumb/8/84/Mccree.jpg/250px-Mccree.jpg", 1, 11.3F));
+        rankUsers.add(new RunningRankUser(0, "admin", "https://avatars0.githubusercontent.com/u/14852537?v=3&s=72", 2, 8.5F));
+        rankUsers.add(new RunningRankUser(2, "低调虐菜", "https://commons.moegirl.org/extensions/Avatar/avatar.php?user=低调虐菜=小七-文库使用账户", 3, 8.1F));
+        rankUsers.add(new RunningRankUser(3, "妙尔尼尔", "https://commons.moegirl.org/extensions/Avatar/avatar.php?user=妙尔尼尔", 4, 7.6F));
+        rankUsers.add(new RunningRankUser(4, "苍之诸神黄昏", "https://commons.moegirl.org/extensions/Avatar/avatar.php?user=苍之诸神黄昏", 5, 2.9F));
+        rankUsers.add(new RunningRankUser(5, "感觉身体被掏空", "https://static.mengniang.org/common/3/3c/%E9%BA%A6%E7%88%B9%E8%BA%BA.png", 6, 1.5F));
+//        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
+//        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
         iRankView.rank(rankUsers);
     }
 

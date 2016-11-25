@@ -1,15 +1,16 @@
 package com.superexcitingboat.runningdate.utils;
 
+import com.superexcitingboat.runningdate.bean.RankUser;
 import com.superexcitingboat.runningdate.bean.WalkingRankUser;
 
 public class CurrentUser {
-    private static WalkingRankUser walkingRankUser = new WalkingRankUser("未登录", -1, -1);
+    private static RankUser rankUser = new RankUser("未登录", null);
 
-    public static WalkingRankUser getWalkingRankUser() {
-        return walkingRankUser;
+    public static RankUser getRankUser() {
+        return rankUser;
     }
 
-    public static void replaceRankedUser(WalkingRankUser walkingRankUser) {
-        CurrentUser.walkingRankUser = walkingRankUser;
+    public static void replaceRankedUser(RankUser rankUser) {
+        CurrentUser.rankUser = rankUser;
     }
 }
