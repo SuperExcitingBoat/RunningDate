@@ -2,7 +2,6 @@ package com.superexcitingboat.runningdate.view.adapter;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -22,18 +21,29 @@ public class WalkingRankAdapter extends RecyclerArrayAdapter<WalkingRankUser> im
 
     private WalkingRankPresenter walkingRankPresenter;
     private OnItemClickListener onItemClickListener;
+    private OnDataReceivedListener onDataReceivedListener;
+
+    public void removeOnDataReceivedListener() {
+        onDataReceivedListener = null;
+    }
+
+    public void setOnDataReceivedListener(OnDataReceivedListener onDataReceivedListener) {
+        this.onDataReceivedListener = onDataReceivedListener;
+    }
 
     public WalkingRankAdapter(Context context, List<WalkingRankUser> objects) {
         super(context, objects);
         walkingRankPresenter = new WalkingRankPresenter();
-        addHeader(new MyRankItemView());
     }
 
     public WalkingRankAdapter(Context context) {
         super(context);
         walkingRankPresenter = new WalkingRankPresenter();
         walkingRankPresenter.addiRankView(this);
-        addHeader(new MyRankItemView());
+    }
+
+    public interface OnDataReceivedListener {
+        void onDataReceived(List<WalkingRankUser> walkingRankUsers);
     }
 
     @Override
@@ -63,6 +73,9 @@ public class WalkingRankAdapter extends RecyclerArrayAdapter<WalkingRankUser> im
     @Override
     public void rank(List<WalkingRankUser> walkingRankUsers) {
         addAll(walkingRankUsers);
+        if (onDataReceivedListener != null) {
+            onDataReceivedListener.onDataReceived(walkingRankUsers);
+        }
     }
 
     public void unBind() {
@@ -91,7 +104,7 @@ public class WalkingRankAdapter extends RecyclerArrayAdapter<WalkingRankUser> im
                     .load(walkingRankUser.getAvatar())
                     .into(icon);
             name.setText(walkingRankUser.getUsername());
-           // count.setText(walkingRankUser.getStepCount() + "");
+            // count.setText(walkingRankUser.getStepCount() + "");
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -105,18 +118,6 @@ public class WalkingRankAdapter extends RecyclerArrayAdapter<WalkingRankUser> im
         @Override
         public String toString() {
             return super.toString() + " '" + name.getText() + "'" + count.getText() + "'";
-        }
-    }
-
-    private class MyRankItemView implements ItemView {
-        @Override
-        public View onCreateView(ViewGroup parent) {
-            return LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rank, parent, false);
-        }
-
-        @Override
-        public void onBindView(View headerView) {
-//TODO
         }
     }
 }

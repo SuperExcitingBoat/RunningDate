@@ -8,28 +8,43 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.bean.WalkingRankUser;
+import com.superexcitingboat.runningdate.utils.CurrentUser;
 import com.superexcitingboat.runningdate.view.activity.RecordActivity;
 import com.superexcitingboat.runningdate.view.adapter.OnItemClickListener;
 import com.superexcitingboat.runningdate.view.adapter.WalkingRankAdapter;
 
-public class WalkingRankFragment extends Fragment implements OnItemClickListener<WalkingRankUser> {
+import java.util.List;
+
+public class WalkingRankFragment extends Fragment implements OnItemClickListener<WalkingRankUser>,WalkingRankAdapter.OnDataReceivedListener {
 
     private EasyRecyclerView easyRecyclerView;
+    public TextView rank;
+    public TextView name;
+    public TextView count;
+    public ImageButton icon;
     private WalkingRankAdapter walkingRankAdapter;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        easyRecyclerView = (EasyRecyclerView) inflater.inflate(R.layout.fragment_item_list, container, false);
-        return easyRecyclerView;
+        return inflater.inflate(R.layout.fragment_rank_list, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        rank = (TextView) view.findViewById(R.id.rank_rank);
+        name = (TextView) view.findViewById(R.id.rank_name);
+        count = (TextView) view.findViewById(R.id.rank_count);
+        icon = (ImageButton) view.findViewById(R.id.rank_icon);
+        ((TextView) view.findViewById(R.id.rank_unit)).setText(R.string.step);
+        easyRecyclerView = (EasyRecyclerView) view.findViewById(R.id.easyrecyclerview);
         easyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         walkingRankAdapter = new WalkingRankAdapter(getContext());
         easyRecyclerView.setAdapter(walkingRankAdapter);
@@ -46,5 +61,25 @@ public class WalkingRankFragment extends Fragment implements OnItemClickListener
     public void onDestroy() {
         super.onDestroy();
         walkingRankAdapter.unBind();
+    }
+
+    @Override
+    public void onDataReceived(List<WalkingRankUser> walkingRankUsers) {
+        for (final WalkingRankUser walkingRankUser : walkingRankUsers) {
+            if (walkingRankUser.getUid() == CurrentUser.getWalkingRankUser().getUid()) {
+                rank.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        rank.setText(walkingRankUser.getRank() + "");
+                        name.setText(walkingRankUser.getUsername());
+                        count.setText(walkingRankUser.getStepCount() + "");
+                        Glide.with(WalkingRankFragment.this)
+                                .load(walkingRankUser.getAvatar())
+                                .into(icon);
+                    }
+                });
+                return;
+            }
+        }
     }
 }

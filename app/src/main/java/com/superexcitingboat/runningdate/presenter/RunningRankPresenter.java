@@ -28,6 +28,13 @@ public class RunningRankPresenter implements Observer<List<RunningRankUser>> {
         rankUsers.add(new RunningRankUser("user0", 0, 0));
         rankUsers.add(new RunningRankUser("user1", 1, 1.1F));
         rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
+        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
+        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
+        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
+        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
+        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
+        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
+        rankUsers.add(new RunningRankUser("user2", 2, 2.2F));
         iRankView.rank(rankUsers);
     }
 

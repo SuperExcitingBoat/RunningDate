@@ -2,7 +2,6 @@ package com.superexcitingboat.runningdate.view.adapter;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -23,18 +22,29 @@ public class RunningRankAdapter extends RecyclerArrayAdapter<RunningRankUser> im
 
     private RunningRankPresenter runningRankPresenter;
     private OnItemClickListener onItemClickListener;
+    private OnDataReceivedListener onDataReceivedListener;
+
+    public void removeOnDataReceivedListener() {
+        onDataReceivedListener = null;
+    }
+
+    public void setOnDataReceivedListener(OnDataReceivedListener onDataReceivedListener) {
+        this.onDataReceivedListener = onDataReceivedListener;
+    }
 
     public RunningRankAdapter(Context context, List<RunningRankUser> objects) {
         super(context, objects);
         runningRankPresenter = new RunningRankPresenter();
-        addHeader(new MyRankItemView());
     }
 
     public RunningRankAdapter(Context context) {
         super(context);
         runningRankPresenter = new RunningRankPresenter();
         runningRankPresenter.addiRankView(this);
-        addHeader(new MyRankItemView());
+    }
+
+     public interface OnDataReceivedListener {
+        void onDataReceived(List<RunningRankUser> runningRankUsers);
     }
 
     @Override
@@ -64,6 +74,9 @@ public class RunningRankAdapter extends RecyclerArrayAdapter<RunningRankUser> im
     @Override
     public void rank(List<RunningRankUser> runningRankUsers) {
         addAll(runningRankUsers);
+        if (onDataReceivedListener != null) {
+            onDataReceivedListener.onDataReceived(runningRankUsers);
+        }
     }
 
     public void unBind() {
@@ -106,18 +119,6 @@ public class RunningRankAdapter extends RecyclerArrayAdapter<RunningRankUser> im
         @Override
         public String toString() {
             return super.toString() + " '" + name.getText() + "'" + mile.getText() + "'";
-        }
-    }
-
-    private class MyRankItemView implements ItemView {
-        @Override
-        public View onCreateView(ViewGroup parent) {
-            return LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rank, parent, false);
-        }
-
-        @Override
-        public void onBindView(View headerView) {
-//TODO
         }
     }
 }

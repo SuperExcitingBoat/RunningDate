@@ -17,13 +17,16 @@ public class RecordActivity extends AppCompatActivity implements IRecordView, Re
     private WalkingRecordPresenter walkingRecordPresenter;
     private EasyRecyclerView easyRecyclerView;
     private RecordAdapter recordAdapter;
+    private int uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
-        easyRecyclerView = (EasyRecyclerView) findViewById(R.id.record_self_easy_recycler_view);
+        easyRecyclerView = (EasyRecyclerView) findViewById(R.id.record_easy_recycler_view);
+        uid = getIntent().getIntExtra("uid", -1);
+
         recordAdapter = new RecordAdapter(this);
         easyRecyclerView.setAdapter(recordAdapter);
 //TODO    easyRecyclerView.setEmptyView();
