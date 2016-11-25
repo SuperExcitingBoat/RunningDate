@@ -22,13 +22,15 @@ import com.superexcitingboat.runningdate.view.adapter.WalkingRankAdapter;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class WalkingRankFragment extends Fragment implements OnItemClickListener<WalkingRankUser>,WalkingRankAdapter.OnDataReceivedListener {
 
     private EasyRecyclerView easyRecyclerView;
     public TextView rank;
     public TextView name;
     public TextView count;
-    public ImageButton icon;
+    public CircleImageView icon;
     private WalkingRankAdapter walkingRankAdapter;
 
 
@@ -42,7 +44,7 @@ public class WalkingRankFragment extends Fragment implements OnItemClickListener
         rank = (TextView) view.findViewById(R.id.rank_rank);
         name = (TextView) view.findViewById(R.id.rank_name);
         count = (TextView) view.findViewById(R.id.rank_count);
-        icon = (ImageButton) view.findViewById(R.id.rank_icon);
+        icon = (CircleImageView) view.findViewById(R.id.rank_icon);
         ((TextView) view.findViewById(R.id.rank_unit)).setText(R.string.step);
         easyRecyclerView = (EasyRecyclerView) view.findViewById(R.id.easyrecyclerview);
         easyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

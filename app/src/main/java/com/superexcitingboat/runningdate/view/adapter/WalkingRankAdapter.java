@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -16,6 +15,8 @@ import com.superexcitingboat.runningdate.bean.WalkingRankUser;
 import com.superexcitingboat.runningdate.presenter.WalkingRankPresenter;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class WalkingRankAdapter extends RecyclerArrayAdapter<WalkingRankUser> implements RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, IRankView<WalkingRankUser> {
 
@@ -91,14 +92,14 @@ public class WalkingRankAdapter extends RecyclerArrayAdapter<WalkingRankUser> im
         public final TextView rank;
         public final TextView name;
         public final TextView count;
-        public final ImageButton icon;
+        public final CircleImageView icon;
 
         public ViewHolder(ViewGroup parent) {
-            super(parent, R.layout.item_rank);
+            super(parent, R.layout.item_ranking);
             rank = $(R.id.rank_rank);
             icon = $(R.id.rank_icon);
             name = $(R.id.rank_name);
-            count = $(R.id.step_count);
+            count = $(R.id.rank_count);
             ((TextView) $(R.id.rank_unit)).setText(R.string.step);
         }
 

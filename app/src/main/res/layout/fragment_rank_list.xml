@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/rank_header"
-        layout="@layout/item_rank" />
+        layout="@layout/item_ranking" />
 
     <include layout="@layout/easyrecyclerview" />
 </LinearLayout>
