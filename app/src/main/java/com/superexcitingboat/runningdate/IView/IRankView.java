@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IRankView<T extends RankUser> {
     void rank(List<T> rankUsers);
+
+    void error(Throwable e);
 }

@@ -3,6 +3,7 @@ package com.superexcitingboat.runningdate.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -10,6 +11,7 @@ import com.superexcitingboat.runningdate.IView.IRecordView;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.bean.Record;
 import com.superexcitingboat.runningdate.presenter.WalkingRecordPresenter;
+import com.superexcitingboat.runningdate.utils.CurrentUser;
 import com.superexcitingboat.runningdate.view.adapter.RecordAdapter;
 
 public class RecordActivity extends AppCompatActivity implements IRecordView, RecyclerArrayAdapter.OnItemClickListener {
@@ -24,11 +26,13 @@ public class RecordActivity extends AppCompatActivity implements IRecordView, Re
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
-        easyRecyclerView = (EasyRecyclerView) findViewById(R.id.record_easy_recycler_view);
-        uid = getIntent().getIntExtra("uid", -1);
+        easyRecyclerView = (EasyRecyclerView) findViewById(R.id.easyrecyclerview);
+        uid = getIntent().getIntExtra("uid", CurrentUser.getWalkingRankUser().getUid());
 
         recordAdapter = new RecordAdapter(this);
+        recordAdapter.setRecordView(this);
         easyRecyclerView.setAdapter(recordAdapter);
+        easyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 //TODO    easyRecyclerView.setEmptyView();
 //        easyRecyclerView.setErrorView();
         walkingRecordPresenter = new WalkingRecordPresenter();
@@ -40,6 +44,11 @@ public class RecordActivity extends AppCompatActivity implements IRecordView, Re
     @Override
     public void record(Record record) {
         recordAdapter.addAll(record.getRecords());
+    }
+
+    @Override
+    public void error(Throwable e) {
+        //TODO setError
     }
 
     @Override
