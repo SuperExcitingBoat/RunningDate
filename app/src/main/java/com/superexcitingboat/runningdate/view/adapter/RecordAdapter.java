@@ -18,11 +18,20 @@ public class RecordAdapter extends RecyclerArrayAdapter<SingleRecord> implements
 
     private WalkingRecordPresenter walkingRecordPresenter;
     private OnItemClickListener onItemClickListener;
+    private IRecordView iRecordView;
 
     public RecordAdapter(Context context) {
         super(context);
         walkingRecordPresenter = new WalkingRecordPresenter();
         walkingRecordPresenter.addiRecordView(this);
+    }
+
+    public void setRecordView(IRecordView iRecordView) {
+        this.iRecordView = iRecordView;
+    }
+
+    public void removeRecordView() {
+        this.iRecordView = null;
     }
 
     @Override
@@ -58,6 +67,11 @@ public class RecordAdapter extends RecyclerArrayAdapter<SingleRecord> implements
         addAll(record.getRecords());
     }
 
+    @Override
+    public void error(Throwable e) {
+        iRecordView.error(e);
+    }
+
     public class ViewHolder extends BaseViewHolder<SingleRecord> {
         public final TextView date;
         public final TextView count;
@@ -71,7 +85,7 @@ public class RecordAdapter extends RecyclerArrayAdapter<SingleRecord> implements
         @Override
         public void setData(final SingleRecord record) {
             date.setText(record.getTime());
-            count.setText(record.getCount());
+            count.setText(record.getCount() + "");
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

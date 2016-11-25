@@ -79,6 +79,11 @@ public class RunningRankAdapter extends RecyclerArrayAdapter<RunningRankUser> im
         }
     }
 
+    @Override
+    public void error(Throwable e) {
+        //TODO setError
+    }
+
     public void unBind() {
         runningRankPresenter.removeRankView();
     }
