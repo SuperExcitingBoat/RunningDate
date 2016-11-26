@@ -16,18 +16,18 @@
 
             <com.superexcitingboat.runningdate.utils.CircleImageView
                 android:id="@+id/iv_user_center_login"
-                android:src="@drawable/touxiang"
+                android:src="@drawable/personal_avatar"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="29dp"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="@color/none"
                 android:clickable="true"
                 />
 
             <TextView
-                android:id="@+id/personal_certen_login_now"
+                android:id="@+id/personal_center_login_now"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_user_center_login"

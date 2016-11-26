@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.utils.Counter.OnStepChangeListener;
 import com.superexcitingboat.runningdate.utils.Counter.StepRecorder;
+import com.superexcitingboat.runningdate.utils.CurrentUser;
 import com.superexcitingboat.runningdate.utils.StaticUtils;
 import com.superexcitingboat.runningdate.view.widget.WalkingView;
 
@@ -63,7 +64,7 @@ public class WalkingFragment extends Fragment implements OnStepChangeListener {
         mDistance = (TextView) view.findViewById(R.id.tv_walking_distance);
         mRanking = (TextView) view.findViewById(R.id.tv_walking_ranking);
         mEnergy = (TextView) view.findViewById(R.id.tv_walking_energy);
-
+        mRanking.setText(CurrentUser.getWalkingRankUser().getRank() + "");
         //计步的fragment中间显示步数的view,点击这个view就开始计步
         mWalkingCount = (WalkingView) view.findViewById(R.id.walking_count);
         mWalkingCount.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +92,8 @@ public class WalkingFragment extends Fragment implements OnStepChangeListener {
         if (isClicked && mWalkingCount != null) {
             mWalkingCount.setSteps(step);
             mDistance.setText(StaticUtils.cutNumber(step * 0.75 / 1000, 2) + " km");
+            CurrentUser.getWalkingRankUser().setStepCount(step);
+            mEnergy.setText(StaticUtils.cutNumber(0.04 * step, 2) + " kcal");
         }
     }
 }

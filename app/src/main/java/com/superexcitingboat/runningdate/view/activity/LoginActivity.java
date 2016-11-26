@@ -11,21 +11,20 @@ import com.superexcitingboat.runningdate.IView.ILoginView;
 import com.superexcitingboat.runningdate.R;
 import com.superexcitingboat.runningdate.bean.User;
 import com.superexcitingboat.runningdate.presenter.LoginPresenter;
+import com.superexcitingboat.runningdate.utils.CurrentUser;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView {
     public static final String OUT_OF_DATE = "OUT_OF_DATE";
     public static final int RESULT_LOGIN_SUCCESS = 1;
-    private boolean outOfDate;
     private LoginPresenter loginPresenter;
     private EditText usernameEdit;
     private EditText passwordEdit;
+    private boolean first;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //login is out of date,after login succeed, set result code and finish this
-        outOfDate = getIntent().getBooleanExtra(OUT_OF_DATE, false);
         usernameEdit = (EditText) findViewById(R.id.login_username);
         passwordEdit = (EditText) findViewById(R.id.login_password);
         loginPresenter = new LoginPresenter();
@@ -33,15 +32,13 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //测试时使用
-                setResult(2);
-                finish();
-
                 String username = usernameEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
                 if (isUsernameAvailable(username)) {
                     if (isPasswordAvailable(password)) {
+                        first = CurrentUser.getWalkingRankUser().getUid() == CurrentUser.NOT_LOGIN_UID;
                         loginPresenter.login(new User(username, password));
+                        //TODO replace with progressbar
                     } else {
                         passwordEdit.setError("Error");
                         passwordEdit.requestFocus();
@@ -56,21 +53,21 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     }
 
     private boolean isPasswordAvailable(String password) {
-        return password.length() > 6;
+        return password.length() > 5;
     }
 
     private boolean isUsernameAvailable(String username) {
-        return username.length() > 6;
+        return username.length() > 3;
     }
 
     @Override
     public void success() {
         Toast.makeText(this, R.string.login_success, Toast.LENGTH_SHORT).show();
-        if (outOfDate) {
+        if (first) {
             //set result code and finish this
-            setResult(RESULT_LOGIN_SUCCESS);
-        } else {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        } else {
+            setResult(RESULT_LOGIN_SUCCESS);
         }
         finish();
     }

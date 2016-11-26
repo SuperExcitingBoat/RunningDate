@@ -16,7 +16,8 @@ public class RankUser extends User {
         this.rank = rank;
     }
 
-    public RankUser(String username, String avatar) {
+    public RankUser(int uid, String username, String avatar) {
+        this.uid = uid;
         this.avatar = avatar;
         this.username = username;
     }

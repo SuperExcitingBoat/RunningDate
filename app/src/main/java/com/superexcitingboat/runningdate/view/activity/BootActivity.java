@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.superexcitingboat.runningdate.R;
+import com.superexcitingboat.runningdate.utils.CurrentUser;
 
 public class BootActivity extends Activity {
 
@@ -20,12 +22,12 @@ public class BootActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                if (CurrentUser.getRankUser() == null) {
-//                    Toast.makeText(BootActivity.this, R.string.not_login, Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(BootActivity.this, LoginActivity.class));
-//                } else {
+                if (CurrentUser.getWalkingRankUser().getUid() == CurrentUser.NOT_LOGIN_UID) {
+                    Toast.makeText(BootActivity.this, R.string.not_login, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(BootActivity.this, LoginActivity.class));
+                } else {
                     startActivity(new Intent(BootActivity.this, MainActivity.class));
-//                }
+                }
                 finish();
             }
         }, 1000);

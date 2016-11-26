@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.superexcitingboat.runningdate.R;
+import com.superexcitingboat.runningdate.utils.CurrentUser;
 import com.superexcitingboat.runningdate.utils.StaticUtils;
 import com.superexcitingboat.runningdate.utils.TimeRecorder;
 import com.superexcitingboat.runningdate.view.activity.LocationActivity;
@@ -89,6 +90,8 @@ public class RunningFragment extends Fragment {
             Log.d(TAG, "onActivityResult: distance: " + mDistance.getText().toString());
             mRunningCount.setTime(StaticUtils.secondToTime(TimeRecorder.getInstance().getCount()));
             mDuration.setText(mRunningCount.getTime());
+            mEnergy.setText(StaticUtils.cutNumber(1000 * data.getFloatExtra("distance", 0) / 0.75 * 0.04, 2)+" kcal");
+            CurrentUser.getRunningRankUser().setMile(data.getFloatExtra("distance", 0));
         }
     }
 }

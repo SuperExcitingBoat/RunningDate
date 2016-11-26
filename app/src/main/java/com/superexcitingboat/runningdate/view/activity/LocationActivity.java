@@ -260,7 +260,7 @@ public class LocationActivity extends AppCompatActivity implements LocationSourc
         if (exitDialog == null) {
             exitDialog = new AlertDialog.Builder(this)
                     .setTitle(R.string.sure_to_exit)
-                    //.setIcon(R.drawable.personal_icon)
+                    //.setIcon(R.drawable.personal_avatar)
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {

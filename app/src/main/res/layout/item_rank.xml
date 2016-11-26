@@ -18,7 +18,7 @@
         android:layout_height="@dimen/default_64_text_height"
         android:layout_toEndOf="@id/rank_rank"
         android:layout_toRightOf="@id/rank_rank"
-        android:src="@drawable/touxiang" />
+        android:src="@drawable/personal_avatar" />
 
     <TextView
         android:id="@+id/rank_name"

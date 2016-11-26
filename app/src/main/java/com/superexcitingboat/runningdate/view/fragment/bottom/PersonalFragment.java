@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.superexcitingboat.runningdate.R;
+import com.superexcitingboat.runningdate.utils.CurrentUser;
 import com.superexcitingboat.runningdate.view.activity.LoginActivity;
 import com.superexcitingboat.runningdate.view.activity.RecordActivity;
 
@@ -37,9 +39,13 @@ public class PersonalFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView() {
-        nickName = (TextView) view.findViewById(R.id.personal_certen_login_now);
+        nickName = (TextView) view.findViewById(R.id.personal_center_login_now);
         userLogin = (ImageView) view.findViewById(R.id.iv_user_center_login);
-
+        nickName.setText(CurrentUser.getWalkingRankUser().getUsername());
+        Glide.with(this)
+                .load(CurrentUser.getWalkingRankUser().getAvatar() == null ? R.drawable.personal_avatar : CurrentUser.getWalkingRankUser().getAvatar())
+                .into(userLogin);
+        Log.d(TAG, "initView: " + CurrentUser.getWalkingRankUser().getAvatar());
         view.findViewById(R.id.rl_history_running).setOnClickListener(this);
         view.findViewById(R.id.rl_history_walking).setOnClickListener(this);
         userLogin.setOnClickListener(this);

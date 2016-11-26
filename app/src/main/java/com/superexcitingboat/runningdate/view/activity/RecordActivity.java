@@ -27,7 +27,7 @@ public class RecordActivity extends AppCompatActivity implements IRecordView, Re
         setContentView(R.layout.activity_record);
 
         easyRecyclerView = (EasyRecyclerView) findViewById(R.id.easyrecyclerview);
-        uid = getIntent().getIntExtra("uid", CurrentUser.getRankUser().getUid());
+        uid = getIntent().getIntExtra("uid", CurrentUser.getWalkingRankUser().getUid());
 
         recordAdapter = new RecordAdapter(this);
         recordAdapter.setRecordView(this);

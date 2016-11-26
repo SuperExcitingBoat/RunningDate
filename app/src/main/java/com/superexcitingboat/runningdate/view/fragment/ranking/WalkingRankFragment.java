@@ -81,7 +81,7 @@ public class WalkingRankFragment extends Fragment implements OnItemClickListener
     @Override
     public void onDataReceived(List<WalkingRankUser> walkingRankUsers) {
         for (final WalkingRankUser walkingRankUser : walkingRankUsers) {
-            if (walkingRankUser.getUid() == CurrentUser.getRankUser().getUid()) {
+            if (walkingRankUser.getUid() == CurrentUser.getWalkingRankUser().getUid()) {
                 rank.post(new Runnable() {
                     @Override
                     public void run() {
@@ -89,7 +89,7 @@ public class WalkingRankFragment extends Fragment implements OnItemClickListener
                         name.setText(walkingRankUser.getUsername());
                         count.setText(walkingRankUser.getStepCount() + "");
                         Glide.with(WalkingRankFragment.this)
-                                .load(walkingRankUser.getAvatar() == null ? R.drawable.personal_icon : walkingRankUser.getAvatar())
+                                .load(walkingRankUser.getAvatar() == null ? R.drawable.personal_avatar : walkingRankUser.getAvatar())
                                 .into(icon);
                     }
                 });
